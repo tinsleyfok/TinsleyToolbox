@@ -74,3 +74,72 @@ body {
   z-index: 2;
   pointer-events: none; /* let clicks pass through to screen (bubbles) */
 }
+
+/* Mobile: hide phone frame, content fills the screen directly */
+@media (max-width: 768px) {
+  body {
+    background: #fff;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  .phone {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    height: 100dvh;
+  }
+
+  .phone-image {
+    display: none;
+  }
+
+  .phone-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  /* Theme switcher: light mode on mobile (default) */
+  .theme-switcher {
+    background: rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .theme-option {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .theme-option:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .theme-option.active {
+    background: rgba(0, 0, 0, 0.14);
+    color: #000;
+  }
+
+  /* Theme switcher: dark mode on mobile */
+  body[data-theme="dark"] .theme-switcher {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  body[data-theme="dark"] .theme-option {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  body[data-theme="dark"] .theme-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  body[data-theme="dark"] .theme-option.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+}
