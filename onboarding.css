@@ -10,11 +10,16 @@ body {
   position: relative;
 }
 
+/* Header bar background for onboarding page (desktop: black, mobile: white) */
+.app-header-bar {
+  background: #000;
+}
+
 /* Small icon toggle button — desktop only */
 .theme-icon-btn {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 6px;
+  right: 6px;
   z-index: 1000;
   width: 40px;
   height: 40px;
@@ -70,12 +75,16 @@ body {
     display: none;
   }
 
+  .app-header-bar {
+    background: #fff;
+  }
+
   .phone-container {
     position: fixed !important;
-    top: 0 !important;
+    top: 52px !important;
     left: 0 !important;
     width: 100% !important;
-    height: 100% !important;
+    height: calc(100% - 52px) !important;
     border-radius: 0 !important;
   }
 

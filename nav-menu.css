@@ -1,9 +1,20 @@
 /* Hamburger nav menu */
 
+/* Sticky header bar — visual only, content flows below */
+.app-header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  z-index: 5;
+  /* background set per-page CSS */
+}
+
 .hamburger-btn {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 6px;
+  left: 6px;
   z-index: 1200;
   width: 40px;
   height: 40px;

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="nav-menu.css">
 </head>
 <body>
+  <div class="app-header-bar"></div>
   <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -18,9 +19,9 @@
     </a>
     <div class="nav-divider"></div>
     <div class="nav-drawer-title">Folders</div>
-    <span class="nav-item nav-item-disabled">
+    <a href="app.html" class="nav-item">
       <span class="nav-item-icon">📁</span> App
-    </span>
+    </a>
     <a href="work.html" class="nav-item">
       <span class="nav-item-icon">📁</span> Animation
     </a>
@@ -31,11 +32,11 @@
     </div>
   </nav>
   <div class="folders-container">
-    <div class="folder-item">
+    <div class="folder-item" id="appFolder" data-href="app.html">
       <div class="folder-icon"></div>
       <div class="folder-title">App</div>
     </div>
-    
+
     <div class="folder-item work" id="workFolder" data-href="work.html">
       <div class="folder-icon"></div>
       <div class="folder-title">Animation</div>
