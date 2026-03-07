@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/tnsley/Desktop/workspace status)",
+      "Bash(gh auth status)",
+      "Bash(gh api user --jq '.login')",
+      "Bash(git --version)",
+      "Bash(brew install gh)",
+      "Bash(curl -Lo /tmp/gh.pkg \"https://github.com/cli/cli/releases/download/v2.67.0/gh_2.67.0_macOS_amd64.pkg\")",
+      "Bash(sudo installer -pkg /tmp/gh.pkg -target /)",
+      "Bash(curl -Lo /tmp/gh.tar.gz \"https://github.com/cli/cli/releases/download/v2.67.0/gh_2.67.0_macOS_amd64.tar.gz\")",
+      "Bash(tar -xzf /tmp/gh.tar.gz -C /tmp)",
+      "Bash(mkdir -p ~/bin)",
+      "Bash(cp /tmp/gh_2.67.0_macOS_amd64/bin/gh ~/bin/gh)",
+      "Bash(echo \"export PATH=$HOME/bin:$PATH\")",
+      "Bash(~/.zshrc)",
+      "Bash(export PATH=$HOME/bin:$PATH)",
+      "Bash(gh --version)",
+      "Bash(curl -fLo /tmp/gh.tar.gz \"https://github.com/cli/cli/releases/download/v2.67.0/gh_2.67.0_macOS_arm64.tar.gz\")",
+      "Bash(cp /tmp/gh_2.67.0_macOS_arm64/bin/gh ~/bin/gh)",
+      "Bash(curl -s \"https://api.github.com/repos/cli/cli/releases/latest\")",
+      "Bash(python3 -c \"import sys,json; r=json.load\\(sys.stdin\\); [print\\(a[''name''],a[''browser_download_url'']\\) for a in r[''assets''] if ''macOS'' in a[''name''] or ''darwin'' in a[''name''].lower\\(\\)]\")",
+      "Bash(curl -fLo /tmp/gh.zip \"https://github.com/cli/cli/releases/download/v2.87.3/gh_2.87.3_macOS_arm64.zip\")",
+      "Bash(unzip -q /tmp/gh.zip -d /tmp/gh_extract)",
+      "Bash(cp /tmp/gh_extract/gh_2.87.3_macOS_arm64/bin/gh ~/bin/gh)",
+      "Bash(gh auth login --web -h github.com)",
+      "Bash(git init)",
+      "Bash(git checkout -b main)",
+      "Bash(gh repo create play-with-claude --public --source=. --remote=origin --description \"Playing with Claude\")",
+      "Bash(git add index.html)",
+      "Bash(git commit:*)",
+      "Bash(git push -u origin main)",
+      "Bash(gh api repos/tinsleyfok/play-with-claude/pages --method POST --field source='{\"\"branch\"\":\"\"main\"\",\"\"path\"\":\"\"/\"\"}')",
+      "Bash(gh api:*)"
+    ]
+  }
+}
