@@ -110,14 +110,14 @@ export function BottomMenuBar({ onCreatePress, createOpen }: BottomMenuBarProps)
 
   return (
     <div
-      className="absolute bottom-0 left-0 right-0"
+      className="absolute bottom-0 left-0 right-0 pb-4"
       style={{ background: isDark ? "#000000" : "#f2f2f2", zIndex: createOpen ? 210 : 50 }}
     >
       <div
         className="h-[0.5px] w-full"
         style={{ background: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}
       />
-      <div className="flex items-center justify-around h-14 pb-4">
+      <div className="flex items-center justify-around h-14">
         {TABS.map((tab) => {
           const isActive = tab.id === activeTab;
           const Icon = isActive ? tab.activeIcon : tab.inactiveIcon;
