@@ -62,7 +62,7 @@ function VideoCardView({ card }: { card: VideoReelCard; isDark: boolean }) {
   return (
     <div
       className="relative rounded-[36px] overflow-hidden w-full"
-      style={{ aspectRatio: "9/16" }}
+      style={{ aspectRatio: "9/15", maxHeight: "calc(166.67cqi - 24px)" }}
     >
       <img
         src={card.imageUrl}
@@ -73,10 +73,10 @@ function VideoCardView({ card }: { card: VideoReelCard; isDark: boolean }) {
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
           height: "40%",
-          background: "linear-gradient(to bottom, transparent, rgba(20,20,20,0.5))",
+          background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.4))",
         }}
       />
-      <div className="absolute right-3 bottom-[120px] flex flex-col items-center gap-4">
+      <div className="absolute right-3 bottom-[60px] flex flex-col items-center gap-4">
         <ActionIcon count={card.likes}><IconLike size={23} color="#fff" /></ActionIcon>
         <ActionIcon count={card.comments}><IconComment size={23} color="#fff" /></ActionIcon>
         <ActionIcon count={card.saves}><IconBookmark size={23} color="#fff" /></ActionIcon>
@@ -106,11 +106,15 @@ function VideoCardView({ card }: { card: VideoReelCard; isDark: boolean }) {
 
 function ImageCardView({ card, isDark }: { card: ImageReelCard; isDark: boolean }) {
   const aspectMap: Record<ImageAspect, string> = { "1:1": "1/1", "4:3": "4/3", "3:4": "3/4" };
-  const hasCaptions = !!card.description;
+  const textColor = isDark ? "#ffffff" : "#000000";
+  const subtleColor = isDark ? "rgba(255,255,255,0.48)" : "rgba(0,0,0,0.48)";
 
   return (
-    <div className="w-full">
-      <div className="rounded-t-[36px] overflow-hidden">
+    <div
+      className="w-full rounded-[36px] overflow-hidden flex flex-col"
+      style={{ background: isDark ? "#1c1c1e" : "#ffffff" }}
+    >
+      <div className="overflow-hidden flex-shrink-0">
         <img
           src={card.imageUrl}
           alt=""
@@ -118,7 +122,28 @@ function ImageCardView({ card, isDark }: { card: ImageReelCard; isDark: boolean 
           style={{ aspectRatio: aspectMap[card.imageAspect] }}
         />
       </div>
-      <InfoSection card={card} isDark={isDark} showCounts={hasCaptions} />
+      <div className="flex-1 min-h-0 overflow-hidden px-5 pt-3 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2">
+          <Avatar url={card.avatarUrl} size={32} isDark={isDark} />
+          <span className="font-rethink text-[16px] font-medium" style={{ color: textColor }}>
+            {card.username}
+          </span>
+          <FollowButton isDark={isDark} />
+        </div>
+        {card.description ? (
+          <p className="font-rethink text-[15px] m-0 leading-snug line-clamp-3" style={{ color: textColor }}>
+            {card.description}
+            <span style={{ color: subtleColor }}> more</span>
+          </p>
+        ) : card.timestamp ? (
+          <p className="font-rethink text-[14px] m-0" style={{ color: subtleColor }}>
+            {card.timestamp}
+          </p>
+        ) : null}
+      </div>
+      <div className="px-5 pb-4 pt-1 flex-shrink-0">
+        <ActionBar card={card} isDark={isDark} />
+      </div>
     </div>
   );
 }
@@ -130,16 +155,14 @@ function DiscussionCardView({ card, isDark }: { card: DiscussionReelCard; isDark
   const quoteFill = isDark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.15)";
   const textColor = isDark ? "#ffffff" : "#000000";
   const subtleColor = isDark ? "rgba(255,255,255,0.48)" : "rgba(0,0,0,0.48)";
-  const color = isDark ? "#ffffff" : "#000000";
 
   return (
     <div
       className="w-full rounded-[36px] overflow-hidden flex flex-col"
       style={{ border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.9)"}` }}
     >
-      {/* Quote area - flat bottom */}
       <div
-        className="relative flex items-center justify-center"
+        className="relative flex items-center justify-center flex-shrink-0"
         style={{
           aspectRatio: quoteAspect,
           background: isDark ? "#2c2c2a" : "#f0ebe7",
@@ -154,39 +177,31 @@ function DiscussionCardView({ card, isDark }: { card: DiscussionReelCard; isDark
         </p>
         <IconQuoteClose size={28} color={quoteFill} className="absolute bottom-5 right-5" />
       </div>
-      {/* Info inside the card */}
       <div
-        className="px-5 pt-3 pb-4 flex flex-col gap-1.5"
+        className="flex flex-col flex-1 min-h-0"
         style={{ background: isDark ? "#1c1c1e" : "#ffffff" }}
       >
-        <div className="flex items-center gap-2">
-          <Avatar url={card.avatarUrl} size={32} isDark={isDark} />
-          <span className="font-rethink text-[16px] font-medium" style={{ color: textColor }}>
-            {card.username}
-          </span>
-          <FollowButton isDark={isDark} />
+        <div className="flex-1 min-h-0 overflow-hidden px-5 pt-3 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <Avatar url={card.avatarUrl} size={32} isDark={isDark} />
+            <span className="font-rethink text-[16px] font-medium" style={{ color: textColor }}>
+              {card.username}
+            </span>
+            <FollowButton isDark={isDark} />
+          </div>
+          {card.description ? (
+            <p className="font-rethink text-[15px] m-0 leading-snug line-clamp-3" style={{ color: textColor }}>
+              {card.description}
+              <span style={{ color: subtleColor }}> more</span>
+            </p>
+          ) : card.timestamp ? (
+            <p className="font-rethink text-[14px] m-0" style={{ color: subtleColor }}>
+              {card.timestamp}
+            </p>
+          ) : null}
         </div>
-        {card.description && (
-          <p className="font-rethink text-[15px] m-0 leading-snug line-clamp-3" style={{ color: textColor }}>
-            {card.description}
-            <span style={{ color: subtleColor }}> more</span>
-          </p>
-        )}
-        {!card.description && card.timestamp && (
-          <p className="font-rethink text-[14px] m-0" style={{ color: subtleColor }}>
-            {card.timestamp}
-          </p>
-        )}
-        <div className="flex items-center justify-between pt-1">
-          <div className="flex items-center gap-4">
-            <ActionBtn color={color} count={card.likes}><IconLike size={22} color={color} /></ActionBtn>
-            <ActionBtn color={color} count={card.comments}><IconComment size={22} color={color} /></ActionBtn>
-            <ActionBtn color={color} count={card.saves}><IconBookmark size={22} color={color} /></ActionBtn>
-          </div>
-          <div className="flex items-center gap-4">
-            <ActionBtn color={color}><IconShare size={22} color={color} /></ActionBtn>
-            <ActionBtn color={color}><IconMore size={22} color={color} /></ActionBtn>
-          </div>
+        <div className="px-5 pb-4 pt-1 flex-shrink-0">
+          <ActionBar card={card} isDark={isDark} />
         </div>
       </div>
     </div>
@@ -198,168 +213,133 @@ function DiscussionCardView({ card, isDark }: { card: DiscussionReelCard; isDark
 function ArticleCardView({ card, isDark }: { card: ArticleReelCard; isDark: boolean }) {
   const textColor = isDark ? "#ffffff" : "#000000";
   const subtleColor = isDark ? "rgba(255,255,255,0.48)" : "rgba(0,0,0,0.48)";
-  const color = isDark ? "#ffffff" : "#000000";
   const bodyColor = isDark ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.75)";
   const dotDim = isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)";
   const dotBright = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.4)";
 
+  const PAGE_PAD = 24;
+
   const scrollRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
   const [pageCount, setPageCount] = useState(1);
+  const [pageHeight, setPageHeight] = useState(0);
   const [activePage, setActivePage] = useState(0);
 
-  const measure = useCallback(() => {
-    const el = scrollRef.current;
+  const remeasure = useCallback(() => {
+    const el = measureRef.current;
     if (!el) return;
-    const pages = Math.max(1, Math.round(el.scrollWidth / el.clientWidth));
-    setPageCount(pages);
+    const h = el.clientHeight;
+    const fullH = el.scrollHeight;
+    setPageHeight(h);
+    if (fullH <= h) {
+      setPageCount(1);
+    } else {
+      const step = h - PAGE_PAD;
+      setPageCount(1 + Math.ceil((fullH - step) / step));
+    }
   }, []);
 
+  useEffect(() => { remeasure(); }, [remeasure, card.body]);
+
   useEffect(() => {
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [measure]);
+    window.addEventListener("resize", remeasure);
+    return () => window.removeEventListener("resize", remeasure);
+  }, [remeasure]);
 
   const onScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el || el.clientWidth === 0) return;
-    const page = Math.round(el.scrollLeft / el.clientWidth);
-    setActivePage(page);
+    setActivePage(Math.round(el.scrollLeft / el.clientWidth));
   }, []);
+
+  const fullContent = (
+    <div className="flex flex-col gap-4 px-5 pt-10">
+      <h2
+        className="font-rethink text-[30px] font-bold leading-tight m-0"
+        style={{ color: textColor }}
+      >
+        {card.title}
+      </h2>
+      <div className="flex items-center gap-2">
+        <Avatar url={card.avatarUrl} size={32} isDark={isDark} />
+        <span className="font-rethink text-[16px] font-medium" style={{ color: textColor }}>
+          {card.username}
+        </span>
+        <FollowButton isDark={isDark} />
+      </div>
+      {(card.readTime || card.timestamp) && (
+        <p className="font-rethink text-[15px] m-0" style={{ color: subtleColor }}>
+          {[card.readTime, card.timestamp].filter(Boolean).join(" \u00b7 ")}
+        </p>
+      )}
+      <p className="font-charter text-[18px] leading-[1.7] m-0" style={{ color: bodyColor }}>
+        {card.body}
+      </p>
+    </div>
+  );
 
   return (
     <div
       className="w-full rounded-[36px] overflow-hidden flex flex-col"
-      style={{ background: isDark ? "#1c1c1e" : "#ffffff", aspectRatio: "9/16", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)"}` }}
+      style={{ background: isDark ? "#1c1c1e" : "#ffffff", aspectRatio: "9/15", maxHeight: "calc(166.67cqi - 24px)", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)"}` }}
     >
-      <div className="px-7 pt-10 pb-6 flex flex-col gap-4 flex-1 min-h-0">
-        <h2
-          className="font-rethink text-[30px] font-bold leading-tight m-0 flex-shrink-0"
-          style={{ color: textColor }}
-        >
-          {card.title}
-        </h2>
-        <div className="flex items-center gap-2.5 flex-shrink-0">
-          <Avatar url={card.avatarUrl} size={34} isDark={isDark} />
-          <span className="font-rethink text-[16px] font-medium" style={{ color: textColor }}>
-            {card.username}
-          </span>
-          <FollowButton isDark={isDark} />
+      {/* Scrollable content area: title + user + meta + body all swipe together */}
+      <div className="flex-1 min-h-0 relative">
+        <div ref={measureRef} className="absolute inset-0 overflow-hidden" style={{ visibility: "hidden" }}>
+          {fullContent}
         </div>
-        {(card.readTime || card.timestamp) && (
-          <p className="font-rethink text-[15px] m-0 flex-shrink-0" style={{ color: subtleColor }}>
-            {[card.readTime, card.timestamp].filter(Boolean).join(" \u00b7 ")}
-          </p>
-        )}
-        {/* Paginated body: horizontal scroll with CSS columns */}
         <div
           ref={scrollRef}
-          className="flex-1 min-h-0"
+          className="h-full flex overflow-x-auto"
           onScroll={onScroll}
-          style={{
-            overflowX: "auto",
-            overflowY: "hidden",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-          }}
+          style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}
         >
-          <div
-            className="h-full"
-            style={{
-              columnWidth: "100%",
-              columnGap: 32,
-              columnFill: "auto",
-            }}
-          >
-            <p
-              className="font-charter text-[18px] leading-[1.7] m-0"
-              style={{ color: bodyColor }}
-            >
-              {card.body}
-            </p>
-          </div>
-        </div>
-        {/* Dynamic dot indicators */}
-        <div className="flex justify-center gap-1.5 py-2 flex-shrink-0">
-          {Array.from({ length: pageCount }).map((_, i) => (
-            <div
-              key={i}
-              className="w-1.5 h-1.5 rounded-full transition-colors duration-200"
-              style={{ background: i === activePage ? dotBright : dotDim }}
-            />
-          ))}
-        </div>
-        {/* Action bar - always pinned */}
-        <div className="flex items-center justify-between flex-shrink-0 pb-1">
-          <div className="flex items-center gap-4">
-            <ActionBtn color={color} count={card.likes}><IconLike size={22} color={color} /></ActionBtn>
-            <ActionBtn color={color} count={card.comments}><IconComment size={22} color={color} /></ActionBtn>
-            <ActionBtn color={color} count={card.saves}><IconBookmark size={22} color={color} /></ActionBtn>
-          </div>
-          <div className="flex items-center gap-4">
-            <ActionBtn color={color}><IconShare size={22} color={color} /></ActionBtn>
-            <ActionBtn color={color}><IconMore size={22} color={color} /></ActionBtn>
-          </div>
+          {Array.from({ length: pageCount }).map((_, i) => {
+            const step = pageHeight - PAGE_PAD;
+            const offset = i * step;
+            return (
+              <div
+                key={i}
+                className="flex-shrink-0 w-full h-full overflow-hidden"
+                style={{ scrollSnapAlign: "start", paddingTop: i > 0 ? PAGE_PAD : 0 }}
+              >
+                <div style={{ marginTop: -offset }}>
+                  {fullContent}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-    </div>
-  );
-}
-
-/* ─── Shared: Info Section ─── */
-
-function InfoSection({
-  card,
-  isDark,
-  showCounts,
-  hideUserRow,
-}: {
-  card: ReelCardBase;
-  isDark: boolean;
-  showCounts?: boolean;
-  hideUserRow?: boolean;
-}) {
-  const textColor = isDark ? "#ffffff" : "#000000";
-  const subtleColor = isDark ? "rgba(255,255,255,0.48)" : "rgba(0,0,0,0.48)";
-  const hasDescription = !!card.description;
-
-  return (
-    <div className="pt-3 pb-1 px-1 flex flex-col gap-1.5">
-      {!hideUserRow && (
-        <div className="flex items-center gap-2">
-          <Avatar url={card.avatarUrl} size={32} isDark={isDark} />
-          <span className="font-rethink text-[16px] font-medium" style={{ color: textColor }}>
-            {card.username}
-          </span>
-          <FollowButton isDark={isDark} />
-        </div>
-      )}
-      {hasDescription && (
-        <p className="font-rethink text-[15px] m-0 leading-snug line-clamp-4" style={{ color: textColor }}>
-          {card.description}
-          <span style={{ color: subtleColor }}> more</span>
-        </p>
-      )}
-      {!hasDescription && card.timestamp && (
-        <p className="font-rethink text-[14px] m-0" style={{ color: subtleColor }}>
-          {card.timestamp}
-        </p>
-      )}
-      <ActionBar card={card} isDark={isDark} showCounts={showCounts} />
+      {/* Fixed bottom: dots + action bar */}
+      <div className="px-5 pb-4">
+        {pageCount > 1 && (
+          <div className="flex justify-center gap-1.5 py-2">
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <div
+                key={i}
+                className="w-1.5 h-1.5 rounded-full transition-colors duration-200"
+                style={{ background: i === activePage ? dotBright : dotDim }}
+              />
+            ))}
+          </div>
+        )}
+        <ActionBar card={card} isDark={isDark} />
+      </div>
     </div>
   );
 }
 
 /* ─── Shared: Action Bar ─── */
 
-function ActionBar({ card, isDark, showCounts }: { card: ReelCardBase; isDark: boolean; showCounts?: boolean }) {
+function ActionBar({ card, isDark }: { card: ReelCardBase; isDark: boolean }) {
   const color = isDark ? "#ffffff" : "#000000";
   return (
     <div className="flex items-center justify-between pt-1">
       <div className="flex items-center gap-4">
-        <ActionBtn color={color} count={showCounts ? card.likes : undefined}><IconLike size={22} color={color} /></ActionBtn>
-        <ActionBtn color={color} count={showCounts ? card.comments : undefined}><IconComment size={22} color={color} /></ActionBtn>
-        <ActionBtn color={color} count={showCounts ? card.saves : undefined}><IconBookmark size={22} color={color} /></ActionBtn>
+        <ActionBtn color={color} count={card.likes}><IconLike size={22} color={color} /></ActionBtn>
+        <ActionBtn color={color} count={card.comments}><IconComment size={22} color={color} /></ActionBtn>
+        <ActionBtn color={color} count={card.saves}><IconBookmark size={22} color={color} /></ActionBtn>
       </div>
       <div className="flex items-center gap-4">
         <ActionBtn color={color}><IconShare size={22} color={color} /></ActionBtn>

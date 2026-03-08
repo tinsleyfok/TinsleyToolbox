@@ -185,7 +185,7 @@ export function ProfilePage() {
     <div>
       <div
         className="sticky top-0 z-40 flex items-center justify-between h-12 px-4"
-        style={{ background: isDark ? "#000000" : "#ffffff" }}
+        style={{ background: isDark ? "#000000" : "#f2f2f2" }}
       >
         <div className="w-10" />
         <h1 className="font-rethink text-[18px] font-bold m-0" style={{ color: textColor }}>
@@ -202,12 +202,12 @@ export function ProfilePage() {
 
       <div
         className="rounded-t-[36px] relative"
-        style={{ background: isDark ? "#0f0f0f" : "#f4f4f4" }}
+        style={{ background: isDark ? "#0f0f0f" : "#f6f6f6" }}
       >
         <div
-          className="absolute top-0 left-0 right-0 h-16 rounded-t-[36px] pointer-events-none"
+          className="absolute top-0 left-0 right-0 h-32 rounded-t-[36px] pointer-events-none"
           style={{
-            background: `linear-gradient(to bottom, ${isDark ? "#000000" : "#ffffff"}, ${isDark ? "#0f0f0f" : "#f4f4f4"})`,
+            background: `linear-gradient(to bottom, ${isDark ? "#1a1a1a" : "#ececec"}, ${isDark ? "#0f0f0f" : "#f6f6f6"})`,
           }}
         />
         <div className="px-1 pt-1 relative z-10">

@@ -111,7 +111,7 @@ export function BottomMenuBar({ onCreatePress, createOpen }: BottomMenuBarProps)
   return (
     <div
       className="absolute bottom-0 left-0 right-0"
-      style={{ background: isDark ? "#000000" : "#ffffff", zIndex: createOpen ? 210 : 50 }}
+      style={{ background: isDark ? "#000000" : "#f2f2f2", zIndex: createOpen ? 210 : 50 }}
     >
       <div
         className="h-[0.5px] w-full"

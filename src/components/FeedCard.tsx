@@ -160,7 +160,7 @@ function CardFooter({ card, isDark }: { card: FeedCardData; isDark: boolean }) {
   const hasImageTitle = card.variant === "video" || card.variant === "image";
 
   return (
-    <div className="px-2 pb-2" style={{ paddingTop: hasImageTitle ? 8 : 4 }}>
+    <div className="px-3 pb-2.5" style={{ paddingTop: hasImageTitle ? 10 : 4 }}>
       {hasImageTitle && (
         <p
           className="font-rethink text-[13px] leading-tight m-0 mb-1 line-clamp-2"

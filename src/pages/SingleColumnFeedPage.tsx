@@ -62,7 +62,7 @@ const MOCK_CARDS: ReelCardData[] = [
     username: "alcov.co",
     avatarUrl: avatar("alcov"),
     title: "Why 90% of Short Videos Die in the First 2 Seconds",
-    body: "I\u2019ve been through 3 rounds of layoffs (twice in HR, once when I was also laid off), and there\u2019s a pattern that emerges before the axe falls.\n\nNot trying to create paranoia, but if you\u2019re seeing multiple signs on this list, it might be time to update your resume. This got long, so I\u2019ve broken it down by timeline and severity. This is how the thing work, I try my best to do the execution, Then the",
+    body: "I\u2019ve been through 3 rounds of layoffs (twice in HR, once when I was also laid off), and there\u2019s a pattern that emerges before the axe falls.\n\nI\u2019m not trying to create paranoia, but if you\u2019re seeing several of these signals at once, it might be a good moment to quietly update your resume. Layoffs rarely happen overnight; they\u2019re usually the result of months of decisions and signals.\n\nLooking back, the signs were often there: hiring freezes, sudden budget scrutiny, leadership becoming vague about roadmap priorities.\n\nIf multiple signals start appearing at the same time, it\u2019s usually not random. It\u2019s a signal that the company may already be preparing for changes behind the scenes.",
     readTime: "4 min read",
     likes: "991",
     comments: "346",

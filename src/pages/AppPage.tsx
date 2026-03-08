@@ -9,7 +9,7 @@ export function AppPage() {
   const isDark = theme === "dark";
   const [createOpen, setCreateOpen] = useState(false);
 
-  const appBg = isDark ? "#000000" : "#ffffff";
+  const appBg = isDark ? "#000000" : "#f2f2f2";
 
   return (
     <div className="app-shell">

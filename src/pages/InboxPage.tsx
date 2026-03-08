@@ -47,7 +47,7 @@ export function InboxPage() {
       {/* Fixed header - always visible */}
       <div
         className="sticky top-0 left-0 right-0 z-40 flex items-center justify-center h-12 px-4"
-        style={{ background: isDark ? "#000000" : "#ffffff" }}
+        style={{ background: isDark ? "#000000" : "#f2f2f2" }}
       >
         <span
           className="font-rethink text-[18px] font-bold leading-[25px]"

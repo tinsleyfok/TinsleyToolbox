@@ -17,7 +17,9 @@ export function App() {
   const isAppRoute = pathname.startsWith("/app");
 
   useEffect(() => {
-    const bg = isAppRoute ? "#000000" : (isDark ? "#191919" : "#f7f7f5");
+    const bg = isAppRoute
+      ? (isDark ? "#000000" : "#f2f2f2")
+      : (isDark ? "#191919" : "#f7f7f5");
     document.documentElement.style.backgroundColor = bg;
     document.body.style.backgroundColor = bg;
   }, [isDark, isAppRoute]);
