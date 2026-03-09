@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tinsleyfok/play-with-claude.git"
+    "url": "git+https://github.com/tinsleyfok/TinsleyToolbox.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/tinsleyfok/play-with-claude/issues"
+    "url": "https://github.com/tinsleyfok/TinsleyToolbox/issues"
   },
-  "homepage": "https://github.com/tinsleyfok/play-with-claude#readme",
+  "homepage": "https://github.com/tinsleyfok/TinsleyToolbox#readme",
   "dependencies": {
     "framer-motion": "^12.35.1",
     "gsap": "^3.14.2",

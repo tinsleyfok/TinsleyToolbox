@@ -18,7 +18,7 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter basename="/play-with-claude">
+    <BrowserRouter basename="/TinsleyToolbox">
       <ThemeProvider>
       <Routes>
         <Route element={<App />}>
