@@ -13,6 +13,7 @@ import { OnboardingPage } from "./pages/OnboardingPage";
 import { InspirationPage } from "./pages/InspirationPage";
 import { AnimationInspirationPage } from "./pages/AnimationInspirationPage";
 import { ThemeInspirationPage } from "./pages/ThemeInspirationPage";
+import { AvatarInspirationPage } from "./pages/AvatarInspirationPage";
 import { ThemeProvider } from "./hooks/useTheme";
 import "./index.css";
 
@@ -34,6 +35,9 @@ createRoot(document.getElementById("root")!).render(
           <Route path="inspiration" element={<InspirationPage />} />
           <Route path="inspiration/animations" element={<AnimationInspirationPage />} />
           <Route path="inspiration/themes" element={<ThemeInspirationPage />} />
+          <Route path="inspiration/avatars" element={<AvatarInspirationPage />} />
+          <Route path="inspiration/avatars" element={<AvatarInspirationPage />} />
+          <Route path="inspiration/avatars" element={<AvatarInspirationPage />} />
         </Route>
       </Routes>
       </ThemeProvider>

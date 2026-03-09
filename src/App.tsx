@@ -9,6 +9,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/inspiration": "Inspiration",
   "/inspiration/animations": "Animations",
   "/inspiration/themes": "Themes",
+  "/inspiration/avatars": "Avatars",
 };
 
 export function App() {

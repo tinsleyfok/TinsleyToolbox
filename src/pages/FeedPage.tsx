@@ -136,7 +136,7 @@ const MOCK_RIGHT: FeedCardData[] = [
   {
     id: "r2",
     variant: "article",
-    title: "Why 90% of Short Videos Die in the First 2 Seconds: How Weak Hooks Kill Your Content",
+    title: "Why 90% of Short Videos Die in the First 2 Seconds",
     username: "Significant_Soup2558",
     likes: "212",
     avatarUrl: avatar("soup"),

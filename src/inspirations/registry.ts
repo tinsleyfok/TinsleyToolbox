@@ -9,7 +9,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/art-of-fauna-image-puzzle-drag-drop-interaction",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/art-of-fauna-puzzle-drag-flip.mp4",
+    media: "/TinsleyToolbox/inspirations/art-of-fauna-puzzle-drag-flip.mp4",
   },
   {
     id: "art-of-fauna-image-text-flip",
@@ -19,7 +19,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/art-of-fauna-image-text-flip-animation",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/art-of-fauna-image-text-flip.mp4",
+    media: "/TinsleyToolbox/inspirations/art-of-fauna-image-text-flip.mp4",
   },
   {
     id: "revolut-card-flip",
@@ -28,7 +28,7 @@ export const inspirations: Inspiration[] = [
       "3D card flip during onboarding with color transitions and sequential spin.",
     source: "https://60fps.design/shots/revolut-card-flip-animation",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/revolut-card-flip.mp4",
+    media: "/TinsleyToolbox/inspirations/revolut-card-flip.mp4",
   },
   {
     id: "pokemon-tcg-card-flip",
@@ -38,7 +38,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/poke-mon-tcg-pocket-card-flip-animation",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/pokemon-tcg-card-flip.mp4",
+    media: "/TinsleyToolbox/inspirations/pokemon-tcg-card-flip.mp4",
   },
   {
     id: "airbnb-id-card-flip-scan",
@@ -48,7 +48,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/airbnb-identity-verification-card-flip-scan-interaction",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/airbnb-id-card-flip-scan.mp4",
+    media: "/TinsleyToolbox/inspirations/airbnb-id-card-flip-scan.mp4",
   },
   {
     id: "revolut-3d-card-rotate",
@@ -57,7 +57,7 @@ export const inspirations: Inspiration[] = [
       "3D card rotation with color picker gallery to preview card designs.",
     source: "https://60fps.design/shots/revolut-3d-card-rotate-interaction",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/revolut-3d-card-rotate.mp4",
+    media: "/TinsleyToolbox/inspirations/revolut-3d-card-rotate.mp4",
   },
   {
     id: "airbnb-3d-card-payment",
@@ -66,7 +66,7 @@ export const inspirations: Inspiration[] = [
       "Payment card animates with 3D wiggle and loading shimmer sequence.",
     source: "https://60fps.design/shots/airbnb-3d-card-payment-animation",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/airbnb-3d-card-payment.mp4",
+    media: "/TinsleyToolbox/inspirations/airbnb-3d-card-payment.mp4",
   },
   {
     id: "wolt-3d-coin-flip",
@@ -76,7 +76,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/wolt-circular-timer-tap-3d-coin-flip-game-interaction",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/wolt-3d-coin-flip.mp4",
+    media: "/TinsleyToolbox/inspirations/wolt-3d-coin-flip.mp4",
   },
   {
     id: "flipboard-page-flip",
@@ -85,7 +85,7 @@ export const inspirations: Inspiration[] = [
       "Signature page-flip navigation that peels content like a magazine page.",
     source: "https://60fps.design/shots/flipboard-page-flip-interaction",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/flipboard-page-flip.mp4",
+    media: "/TinsleyToolbox/inspirations/flipboard-page-flip.mp4",
   },
   {
     id: "family-wallet-card-morph",
@@ -95,7 +95,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/family-wallet-card-morph-to-screen-transition",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/family-wallet-card-morph.mp4",
+    media: "/TinsleyToolbox/inspirations/family-wallet-card-morph.mp4",
   },
   {
     id: "cred-wallet-card-morph",
@@ -104,7 +104,7 @@ export const inspirations: Inspiration[] = [
       "Credit card morphs with a 3D flip into an expanded wallet detail view.",
     source: "https://60fps.design/shots/cred-wallet-card-morph",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/cred-wallet-card-morph.mp4",
+    media: "/TinsleyToolbox/inspirations/cred-wallet-card-morph.mp4",
   },
   {
     id: "revolut-card-reader-hero",
@@ -113,7 +113,7 @@ export const inspirations: Inspiration[] = [
       "Hero animation with a 3D card spinning into the card reader device.",
     source: "https://60fps.design/shots/revolut-card-reader-hero-animation",
     group: "Flip Card",
-    media: "/play-with-claude/inspirations/revolut-card-reader-hero.mp4",
+    media: "/TinsleyToolbox/inspirations/revolut-card-reader-hero.mp4",
   },
   {
     id: "honk-double-tap-heart",
@@ -123,7 +123,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/honk-double-tap-friends-chat-heart-emoji-pop-interaction",
     group: "Like",
-    media: "/play-with-claude/inspirations/honk-double-tap-heart.mp4",
+    media: "/TinsleyToolbox/inspirations/honk-double-tap-heart.mp4",
   },
   {
     id: "airbnb-guest-favorite",
@@ -132,7 +132,7 @@ export const inspirations: Inspiration[] = [
       "Heart icon fills with a subtle spring bounce when favoriting a listing.",
     source: "https://60fps.design/shots/airbnb-guest-favorite-icon-animation",
     group: "Like",
-    media: "/play-with-claude/inspirations/airbnb-guest-favorite.mp4",
+    media: "/TinsleyToolbox/inspirations/airbnb-guest-favorite.mp4",
   },
   {
     id: "apple-music-emoji-reaction",
@@ -141,7 +141,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/apple-music-emoji-reaction-interaction",
     group: "Like",
-    media: "/play-with-claude/inspirations/apple-music-emoji-reaction.mp4",
+    media: "/TinsleyToolbox/inspirations/apple-music-emoji-reaction.mp4",
   },
   {
     id: "instagram-long-press-reaction",
@@ -151,7 +151,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/instagram-long-press-reaction-interaction",
     group: "Like",
-    media: "/play-with-claude/inspirations/instagram-long-press-reaction.mp4",
+    media: "/TinsleyToolbox/inspirations/instagram-long-press-reaction.mp4",
   },
   {
     id: "x-swipe-to-like",
@@ -161,7 +161,7 @@ export const inspirations: Inspiration[] = [
     source:
       "https://60fps.design/shots/x-swipe-to-like-and-bookmark-interaction",
     group: "Like",
-    media: "/play-with-claude/inspirations/x-swipe-to-like.mp4",
+    media: "/TinsleyToolbox/inspirations/x-swipe-to-like.mp4",
   },
   {
     id: "youtube-shorts-like",
@@ -170,7 +170,7 @@ export const inspirations: Inspiration[] = [
       "Thumbs-up fills and bounces with a particle ring on tap.",
     source: "https://60fps.design/shots/youtube-shots-like-animation",
     group: "Like",
-    media: "/play-with-claude/inspirations/youtube-shorts-like.mp4",
+    media: "/TinsleyToolbox/inspirations/youtube-shorts-like.mp4",
   },
   {
     id: "threads-swipe-to-like",
@@ -179,7 +179,7 @@ export const inspirations: Inspiration[] = [
       "Swipe right on a post to trigger the like action inline.",
     source: "https://60fps.design/shots/threads-swipe-to-like-interaction",
     group: "Like",
-    media: "/play-with-claude/inspirations/threads-swipe-to-like.mp4",
+    media: "/TinsleyToolbox/inspirations/threads-swipe-to-like.mp4",
   },
   {
     id: "threads-likes-count-up",
@@ -188,7 +188,7 @@ export const inspirations: Inspiration[] = [
       "Like count animates upward with a smooth number ticker.",
     source: "https://60fps.design/shots/threads-likes-count-up-animation",
     group: "Like",
-    media: "/play-with-claude/inspirations/threads-likes-count-up.mp4",
+    media: "/TinsleyToolbox/inspirations/threads-likes-count-up.mp4",
   },
   {
     id: "telegram-emoji-reaction",
@@ -197,7 +197,7 @@ export const inspirations: Inspiration[] = [
       "Animated emoji flies out and attaches to a message bubble.",
     source: "https://60fps.design/shots/telegram-chat-emoji-reaction",
     group: "Like",
-    media: "/play-with-claude/inspirations/telegram-emoji-reaction.mp4",
+    media: "/TinsleyToolbox/inspirations/telegram-emoji-reaction.mp4",
   },
   {
     id: "instagram-heart-like",
@@ -206,7 +206,7 @@ export const inspirations: Inspiration[] = [
       "The classic double-tap heart overlay with scale and fade.",
     source: "https://60fps.design/shots/instagram-heart-like-animation",
     group: "Like",
-    media: "/play-with-claude/inspirations/instagram-heart-like.mp4",
+    media: "/TinsleyToolbox/inspirations/instagram-heart-like.mp4",
   },
 
   // Colour Palette
@@ -220,7 +220,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/youtube-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/youtube-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#F2F2F2" },
@@ -231,7 +231,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/youtube-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/youtube-dark.png",
         colors: [
           { label: "Background", value: "#0F0F0F" },
           { label: "Surface", value: "#212121" },
@@ -252,7 +252,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/instagram-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/instagram-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#FAFAFA" },
@@ -263,7 +263,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/instagram-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/instagram-dark.png",
         colors: [
           { label: "Background", value: "#000000" },
           { label: "Surface", value: "#121212" },
@@ -284,7 +284,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/reddit-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/reddit-light.png",
         colors: [
           { label: "Background", value: "#DAE0E6" },
           { label: "Surface", value: "#FFFFFF" },
@@ -295,7 +295,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/reddit-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/reddit-dark.png",
         colors: [
           { label: "Background", value: "#030303" },
           { label: "Surface", value: "#1A1A1B" },
@@ -316,7 +316,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/notion-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/notion-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#F7F6F3" },
@@ -327,7 +327,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/notion-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/notion-dark.png",
         colors: [
           { label: "Background", value: "#191919" },
           { label: "Surface", value: "#202020" },
@@ -348,7 +348,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/discord-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/discord-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#F2F3F5" },
@@ -359,7 +359,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/discord-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/discord-dark.png",
         colors: [
           { label: "Background", value: "#313338" },
           { label: "Surface", value: "#2B2D31" },
@@ -380,7 +380,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/tiktok-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/tiktok-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#F1F1F2" },
@@ -391,7 +391,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/tiktok-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/tiktok-dark.png",
         colors: [
           { label: "Background", value: "#121212" },
           { label: "Surface", value: "#1E1E1E" },
@@ -412,7 +412,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/medium-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/medium-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#F2F2F2" },
@@ -423,7 +423,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/medium-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/medium-dark.png",
         colors: [
           { label: "Background", value: "#121212" },
           { label: "Surface", value: "#1E1E1E" },
@@ -444,7 +444,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/whatsapp-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/whatsapp-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#F0F2F5" },
@@ -455,7 +455,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/whatsapp-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/whatsapp-dark.png",
         colors: [
           { label: "Background", value: "#111B21" },
           { label: "Surface", value: "#1F2C34" },
@@ -476,7 +476,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/telegram-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/telegram-light.png",
         colors: [
           { label: "Background", value: "#FFFFFF" },
           { label: "Surface", value: "#EFEFF4" },
@@ -487,7 +487,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/telegram-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/telegram-dark.png",
         colors: [
           { label: "Background", value: "#18222D" },
           { label: "Surface", value: "#1F2936" },
@@ -499,6 +499,81 @@ export const inspirations: Inspiration[] = [
       },
     },
   },
+  // Avatar
+
+  {
+    id: "avatar-notion",
+    title: "Notion – Line-Art Avatar",
+    description:
+      "Minimal black-outline illustrations on a neutral background. Gender-neutral, warm, and readable at any size. The most widely adopted minimal avatar style in productivity apps.",
+    source: "https://notion-avatar.app/en",
+    group: "Avatar",
+    image: "https://notion-avatar.app/og.png",
+  },
+  {
+    id: "avatar-apple-memoji",
+    title: "Apple – Memoji",
+    description:
+      "3D cartoon avatar that tracks facial expressions. Soft gradients, rounded forms, and vibrant skin tones. Premium feel with high detail that works as both static and animated.",
+    source: "https://support.apple.com/en-us/111893",
+    group: "Avatar",
+    image: "https://help.apple.com/assets/679FA8A6EE0FFB1C7D0D8C72/679FA8C2EE0FFB1C7D0D8CDE/en_US/75580c31ae8bb1f5cac014783b87845b.png",
+  },
+  {
+    id: "avatar-dicebear",
+    title: "DiceBear – Avataaars",
+    description:
+      "Open-source avatar library generating illustrated characters from a seed string. Consistent style across all users with customizable features. Used widely in dev tools and social platforms.",
+    source: "https://www.dicebear.com/styles/avataaars/",
+    group: "Avatar",
+    image: "https://api.dicebear.com/9.x/avataaars/svg?seed=tinsley&size=256",
+  },
+  {
+    id: "avatar-xiaohongshu",
+    title: "Xiaohongshu – Soft 3D Avatar",
+    description:
+      "Rounded, clay-like 3D avatar with pastel tones and subtle shadows. Cute, approachable aesthetic that matches the platform's lifestyle content. Gender-neutral with gentle proportions.",
+    source: "https://www.xiaohongshu.com",
+    group: "Avatar",
+    image: "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo30s53dammhk005p1dvkq20bncgbv12fo",
+  },
+  {
+    id: "avatar-figma",
+    title: "Figma – Geometric Initial",
+    description:
+      "Simple colored circle with a white initial letter. Bold, flat colors auto-assigned per user create visual distinction in multiplayer. Ultra-minimal and scales perfectly to any size.",
+    source: "https://www.figma.com",
+    group: "Avatar",
+    image: "https://s3-alpha.figma.com/static/user_j.png",
+  },
+  {
+    id: "avatar-proposal-minimal-geo",
+    title: "Proposal A – Minimal Line Face",
+    description:
+      "Notion-inspired line-art face on warm beige circle. Clean black outlines with dot eyes and curved smile. Approachable and gender-neutral, scales well from 56px down to 16px.",
+    source: "Generated for Tinsley's Toolbox",
+    group: "Avatar",
+    image: "/TinsleyToolbox/inspirations/avatar-proposal-1-minimal-geo.png",
+  },
+  {
+    id: "avatar-proposal-silhouette",
+    title: "Proposal B – Gradient Silhouette Cameo",
+    description:
+      "Soft cream-to-terracotta gradient circle with a minimal profile silhouette. Elegant and premium, reminiscent of classic cameo jewelry. Works beautifully in both light and dark modes.",
+    source: "Generated for Tinsley's Toolbox",
+    group: "Avatar",
+    image: "/TinsleyToolbox/inspirations/avatar-proposal-2-silhouette.png",
+  },
+  {
+    id: "avatar-proposal-initial",
+    title: "Proposal C – Serif Initial Tiles",
+    description:
+      "Serif letter centered in a soft rounded square. Muted earth-tone palette (dusty rose, sage, clay) creates variety across users. Typographic and editorial — matches Playfair Display used in the app.",
+    source: "Generated for Tinsley's Toolbox",
+    group: "Avatar",
+    image: "/TinsleyToolbox/inspirations/avatar-proposal-3-initial.png",
+  },
+
   {
     id: "linear-palette",
     title: "Linear",
@@ -508,7 +583,7 @@ export const inspirations: Inspiration[] = [
     group: "Colour Palette",
     palette: {
       light: {
-        screenshot: "/play-with-claude/inspirations/linear-light.png",
+        screenshot: "/TinsleyToolbox/inspirations/linear-light.png",
         colors: [
           { label: "Background", value: "#F4F5F8" },
           { label: "Surface", value: "#FFFFFF" },
@@ -519,7 +594,7 @@ export const inspirations: Inspiration[] = [
         ],
       },
       dark: {
-        screenshot: "/play-with-claude/inspirations/linear-dark.png",
+        screenshot: "/TinsleyToolbox/inspirations/linear-dark.png",
         colors: [
           { label: "Background", value: "#08090A" },
           { label: "Surface", value: "#1A1C1F" },

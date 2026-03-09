@@ -17,6 +17,7 @@ export interface Inspiration {
   source: string;
   group: string;
   media?: string;
+  image?: string;
   component?: LazyExoticComponent<ComponentType>;
   palette?: {
     light: PaletteMode;

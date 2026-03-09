@@ -58,11 +58,11 @@ export function ReelCard({ card }: { card: ReelCardData }) {
 
 /* ─── Video Card: fixed 9:16 ─── */
 
-function VideoCardView({ card }: { card: VideoReelCard; isDark: boolean }) {
+function VideoCardView({ card, isDark }: { card: VideoReelCard; isDark: boolean }) {
   return (
     <div
       className="relative rounded-[36px] overflow-hidden w-full"
-      style={{ aspectRatio: "9/14.5" }}
+      style={{ aspectRatio: "9/14.5", border: isDark ? "none" : "1px solid rgba(0,0,0,0.05)" }}
     >
       <img
         src={card.imageUrl}
@@ -112,9 +112,9 @@ function ImageCardView({ card, isDark }: { card: ImageReelCard; isDark: boolean 
   return (
     <div
       className="w-full rounded-[36px] overflow-hidden flex flex-col"
-      style={{ background: isDark ? "#1c1c1e" : "#ffffff" }}
+      style={{ background: isDark ? "#1c1c1e" : "#ffffff", border: isDark ? "none" : "1px solid rgba(0,0,0,0.05)" }}
     >
-      <div className="overflow-hidden flex-shrink-0">
+      <div className="overflow-hidden flex-shrink-0" style={{ borderBottom: isDark ? "none" : "1px solid rgba(0,0,0,0.05)" }}>
         <img
           src={card.imageUrl}
           alt=""
@@ -159,7 +159,7 @@ function DiscussionCardView({ card, isDark }: { card: DiscussionReelCard; isDark
   return (
     <div
       className="w-full rounded-[36px] overflow-hidden flex flex-col"
-      style={{ border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.9)"}` }}
+      style={{ border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)"}` }}
     >
       <div
         className="relative flex items-center justify-center flex-shrink-0"
@@ -228,16 +228,17 @@ function ArticleCardView({ card, isDark }: { card: ArticleReelCard; isDark: bool
     const paraEls = measure.querySelectorAll<HTMLElement>("[data-para]");
     if (!headerEl || paraEls.length === 0) { setPageGroups([[]]); return; }
 
+    const BOTTOM_SAFETY = 48;
     const headerH = headerEl.offsetHeight;
     const groups: number[][] = [[]];
-    let budget = pageH - headerH;
+    let budget = pageH - headerH - BOTTOM_SAFETY;
     let used = 0;
 
     paraEls.forEach((el, i) => {
       const h = el.offsetHeight + (used > 0 ? GAP : 0);
       if (used + h > budget && groups[groups.length - 1].length > 0) {
         groups.push([]);
-        budget = pageH - PAGE_PAD;
+        budget = pageH - PAGE_PAD - BOTTOM_SAFETY;
         used = 0;
       }
       groups[groups.length - 1].push(i);
@@ -286,7 +287,7 @@ function ArticleCardView({ card, isDark }: { card: ArticleReelCard; isDark: bool
   return (
     <div
       className="w-full rounded-[36px] overflow-hidden flex flex-col"
-      style={{ background: isDark ? "#1c1c1e" : "#ffffff", aspectRatio: "9/14.5", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)"}` }}
+      style={{ background: isDark ? "#1c1c1e" : "#ffffff", aspectRatio: "9/14.5", border: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)"}` }}
     >
       <div ref={outerRef} className="flex-1 min-h-0 relative">
         {/* Hidden measurement div */}
@@ -294,7 +295,7 @@ function ArticleCardView({ card, isDark }: { card: ArticleReelCard; isDark: bool
           <div data-header className="flex flex-col gap-4 px-5 pt-6">
             {header}
           </div>
-          <div className="flex flex-col gap-4 px-5">
+          <div className="flex flex-col gap-4 px-5" style={{ paddingBottom: 32 }}>
             {paragraphs.map((p, i) => (
               <p key={i} data-para className="font-charter text-[18px] leading-[1.7] m-0">
                 {p}
@@ -312,12 +313,12 @@ function ArticleCardView({ card, isDark }: { card: ArticleReelCard; isDark: bool
           {pageGroups.map((group, pageIdx) => (
             <div
               key={pageIdx}
-              className="flex-shrink-0 w-full h-full overflow-hidden"
+              className="flex-shrink-0 w-full h-full overflow-hidden relative"
               style={{ scrollSnapAlign: "start" }}
             >
               <div
                 className="flex flex-col gap-4 px-5"
-                style={{ paddingTop: pageIdx === 0 ? 24 : PAGE_PAD }}
+                style={{ paddingTop: pageIdx === 0 ? 24 : PAGE_PAD, paddingBottom: 32 }}
               >
                 {pageIdx === 0 && header}
                 {group.map(idx => (

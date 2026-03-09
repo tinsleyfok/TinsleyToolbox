@@ -23,7 +23,7 @@ export function FeedCard({ card, bordered }: { card: FeedCardData; bordered?: bo
   const isDark = theme === "dark";
 
   const size = card.size || "portrait";
-  const imageHeight = size === "portrait" ? 252 : size === "square" ? 187 : 140;
+  const imageAspect = size === "portrait" ? "3/4" : size === "square" ? "1/1" : "4/3";
 
   const cardBg = bordered
     ? (isDark ? "#181818" : "#fafafa")
@@ -31,24 +31,24 @@ export function FeedCard({ card, bordered }: { card: FeedCardData; bordered?: bo
 
   const borderStyle = bordered
     ? `1px solid ${isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)"}`
-    : "none";
+    : isDark ? "none" : "1px solid rgba(0,0,0,0.05)";
 
   if (card.variant === "draft") {
     return (
       <div
         className="rounded-2xl overflow-hidden w-full relative"
-        style={{ height: imageHeight, border: borderStyle }}
+        style={{ aspectRatio: imageAspect, border: borderStyle }}
       >
         {card.imageUrl && (
           <img src={card.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
         )}
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.36)" }} />
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 z-10">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 z-10">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
             <path d="M23.25 20.25C23.6642 20.25 24 20.5858 24 21V22.5C24 22.9142 23.6642 23.25 23.25 23.25H12.75C12.3358 23.25 12 22.9142 12 22.5V21C12 20.5858 12.3358 20.25 12.75 20.25H23.25Z" fill="white"/>
             <path fillRule="evenodd" clipRule="evenodd" d="M29.313 6.00513C30.2879 6.02046 30.8811 6.08145 31.3623 6.32666C31.9267 6.61426 32.3857 7.07332 32.6733 7.6377C33.0003 8.27943 33 9.12014 33 10.8003V11.6997L32.9949 12.813C32.9795 13.7879 32.9185 14.3811 32.6733 14.8623L32.5576 15.0688C32.2967 15.4942 31.9328 15.8472 31.5 16.0972L31.4993 23.688C31.4926 25.6306 31.4384 26.7005 31.0093 27.5427L30.9258 27.7002C30.4916 28.475 29.8365 29.1048 29.0427 29.5093L28.8589 29.5957C28.0435 29.946 26.992 29.993 25.188 29.9993H10.812C9.00798 29.993 7.95651 29.946 7.14111 29.5957L6.95728 29.5093C6.16354 29.1048 5.50844 28.475 5.07422 27.7002L4.99072 27.5427C4.56161 26.7005 4.50744 25.6306 4.50073 23.688L4.5 16.0972C4.06719 15.8472 3.70326 15.4942 3.44238 15.0688L3.32666 14.8623C3.08145 14.3811 3.02046 13.7879 3.00513 12.813L3 11.6997V10.8003C3 9.22505 3.00006 8.38798 3.26953 7.76074L3.32666 7.6377C3.57832 7.14384 3.96127 6.7306 4.43115 6.44238L4.6377 6.32666C5.11894 6.08145 5.71205 6.02046 6.68701 6.00513L7.80029 6H28.1997L29.313 6.00513ZM7.5 22.8003C7.5 24.1095 7.50229 24.9112 7.55127 25.511C7.5741 25.7904 7.60253 25.9598 7.62671 26.0625C7.63821 26.1113 7.64801 26.1415 7.65381 26.1577C7.65937 26.1733 7.66333 26.1812 7.66333 26.1812L7.72119 26.2844C7.8653 26.5194 8.07192 26.7108 8.31885 26.8367L8.34229 26.8462C8.35853 26.852 8.38866 26.8618 8.4375 26.8733C8.54019 26.8975 8.70963 26.9259 8.98901 26.9487C9.58882 26.9977 10.3905 27 11.6997 27H24.3003C25.6095 27 26.4112 26.9977 27.011 26.9487C27.2904 26.9259 27.4598 26.8975 27.5625 26.8733C27.6113 26.8618 27.6415 26.852 27.6577 26.8462C27.6733 26.8406 27.6812 26.8367 27.6812 26.8367L27.7844 26.7788C28.0194 26.6347 28.2108 26.4281 28.3367 26.1812L28.3462 26.1577C28.352 26.1415 28.3618 26.1113 28.3733 26.0625C28.3975 25.9598 28.4259 25.7904 28.4487 25.511C28.4977 24.9112 28.5 24.1095 28.5 22.8003V16.5H7.5V22.8003ZM7.80029 9C6.91078 9 6.42372 9.00219 6.07397 9.03076C6.06032 9.03188 6.04739 9.03403 6.03516 9.03516C6.03403 9.04739 6.03188 9.06032 6.03076 9.07397C6.00219 9.42372 6 9.91078 6 10.8003V11.6997C6 12.5892 6.00219 13.0763 6.03076 13.426C6.03186 13.4394 6.03405 13.4521 6.03516 13.4641C6.04741 13.4652 6.06029 13.4681 6.07397 13.4692C6.42372 13.4978 6.91078 13.5 7.80029 13.5H28.1997C29.0892 13.5 29.5763 13.4978 29.926 13.4692C29.9394 13.4681 29.9521 13.4652 29.9641 13.4641C29.9652 13.4521 29.9681 13.4394 29.9692 13.426C29.9978 13.0763 30 12.5892 30 11.6997V10.8003C30 9.91078 29.9978 9.42372 29.9692 9.07397C29.9681 9.06029 29.9652 9.04741 29.9641 9.03516C29.9521 9.03405 29.9394 9.03186 29.926 9.03076C29.5763 9.00219 29.0892 9 28.1997 9H7.80029Z" fill="white"/>
           </svg>
-          <span className="font-rethink text-[18px] font-bold text-white">Drafts</span>
+          <span className="font-rethink text-[13px] font-bold text-white">Drafts</span>
         </div>
       </div>
     );
@@ -60,20 +60,20 @@ export function FeedCard({ card, bordered }: { card: FeedCardData; bordered?: bo
       style={{ background: cardBg, border: borderStyle }}
     >
       {card.variant === "article" ? (
-        <ArticleContent card={card} isDark={isDark} />
+        <ArticleContent card={card} isDark={isDark} size={size} />
       ) : card.variant === "discussion" ? (
         <DiscussionContent card={card} isDark={isDark} size={size} />
       ) : (
-        <ImageContent card={card} isDark={isDark} height={imageHeight} />
+        <ImageContent card={card} isDark={isDark} aspect={imageAspect} />
       )}
       <CardFooter card={card} isDark={isDark} />
     </div>
   );
 }
 
-function ImageContent({ card, isDark: _isDark, height }: { card: FeedCardData; isDark: boolean; height: number }) {
+function ImageContent({ card, isDark, aspect }: { card: FeedCardData; isDark: boolean; aspect: string }) {
   return (
-    <div className="relative" style={{ height, background: card.imageBg || "#2a2a2a" }}>
+    <div className="relative" style={{ aspectRatio: aspect, background: card.imageBg || "#2a2a2a" }}>
       {card.imageUrl && (
         <img src={card.imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
       )}
@@ -98,13 +98,14 @@ function ImageContent({ card, isDark: _isDark, height }: { card: FeedCardData; i
   );
 }
 
-function ArticleContent({ card, isDark }: { card: FeedCardData; isDark: boolean }) {
+function ArticleContent({ card, isDark, size }: { card: FeedCardData; isDark: boolean; size: CardSize }) {
+  const aspect = size === "portrait" ? "3/4" : size === "square" ? "1/1" : "4/3";
   return (
     <div
       className="p-4 flex flex-col gap-2"
       style={{
         background: isDark ? "#2c2c2a" : "#f0ebe7",
-        minHeight: 187,
+        aspectRatio: aspect,
       }}
     >
       <h3
@@ -125,32 +126,36 @@ function ArticleContent({ card, isDark }: { card: FeedCardData; isDark: boolean 
   );
 }
 
+const QUOTE_COLORS_LIGHT = ["#e05a33", "#2a9d8f", "#7b61ff", "#e07bab", "#d19900", "#3a86ff"];
+const QUOTE_COLORS_DARK = ["#e8734f", "#4ecdc4", "#9b87f5", "#f0a0c4", "#e6b422", "#6eaaff"];
+
 function DiscussionContent({ card, isDark, size }: { card: FeedCardData; isDark: boolean; size: CardSize }) {
-  const h = size === "portrait" ? 252 : size === "square" ? 187 : 140;
+  const aspect = size === "portrait" ? "3/4" : size === "square" ? "1/1" : "4/3";
+  const hash = card.id.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+  const quoteColor = isDark
+    ? QUOTE_COLORS_DARK[hash % QUOTE_COLORS_DARK.length]
+    : QUOTE_COLORS_LIGHT[hash % QUOTE_COLORS_LIGHT.length];
   return (
     <div
       className="relative flex items-center justify-center p-5"
       style={{
         background: isDark ? "#2c2c2a" : "#f0ebe7",
-        height: h,
+        aspectRatio: aspect,
       }}
     >
-      {/* Opening quotation marks */}
       <svg className="absolute top-3 left-3" width="32" height="24" viewBox="0 0 32 24" fill="none">
-        <path d="M0 14.4C0 6.4 5.6 0 13.6 0V4.8C9.6 4.8 6.4 8 6.4 12H12.8V24H0V14.4Z" fill={isDark ? "#b8960a" : "#d19900"} />
-        <path d="M16.8 14.4C16.8 6.4 22.4 0 30.4 0V4.8C26.4 4.8 23.2 8 23.2 12H29.6V24H16.8V14.4Z" fill={isDark ? "#b8960a" : "#d19900"} />
+        <path d="M0 14.4C0 6.4 5.6 0 13.6 0V4.8C9.6 4.8 6.4 8 6.4 12H12.8V24H0V14.4Z" fill={quoteColor} />
+        <path d="M16.8 14.4C16.8 6.4 22.4 0 30.4 0V4.8C26.4 4.8 23.2 8 23.2 12H29.6V24H16.8V14.4Z" fill={quoteColor} />
       </svg>
-      {/* Title */}
       <p
         className="font-rethink text-[15px] font-bold leading-snug m-0 text-center z-10 px-2"
         style={{ color: isDark ? "#ffffff" : "#000000" }}
       >
         {card.title}
       </p>
-      {/* Closing quotation marks */}
       <svg className="absolute bottom-3 right-3" width="32" height="24" viewBox="0 0 32 24" fill="none">
-        <path d="M32 9.6C32 17.6 26.4 24 18.4 24V19.2C22.4 19.2 25.6 16 25.6 12H19.2V0H32V9.6Z" fill={isDark ? "#b8960a" : "#d19900"} />
-        <path d="M15.2 9.6C15.2 17.6 9.6 24 1.6 24V19.2C5.6 19.2 8.8 16 8.8 12H2.4V0H15.2V9.6Z" fill={isDark ? "#b8960a" : "#d19900"} />
+        <path d="M32 9.6C32 17.6 26.4 24 18.4 24V19.2C22.4 19.2 25.6 16 25.6 12H19.2V0H32V9.6Z" fill={quoteColor} />
+        <path d="M15.2 9.6C15.2 17.6 9.6 24 1.6 24V19.2C5.6 19.2 8.8 16 8.8 12H2.4V0H15.2V9.6Z" fill={quoteColor} />
       </svg>
     </div>
   );
