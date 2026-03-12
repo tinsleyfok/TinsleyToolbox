@@ -23,12 +23,11 @@ export function FeedCard({ card }: { card: FeedCardData }) {
   const isDark = theme === "dark";
 
   const size = card.size || "portrait";
-  const imageHeight = size === "portrait" ? 252 : size === "square" ? 187 : 140;
+  const imageAspect = size === "portrait" ? "3/4" : size === "square" ? "1/1" : "4/3";
 
-  const cardBg = isDark ? "#1c1c1e" : "#f5f5f5";
+  const cardBg = isDark ? "#1c1c1e" : "#ffffff";
 
-  // Grey stroke for card thumbnails in two-column feed - 5% of #000
-  const borderStyle = `1px solid rgba(0, 0, 0, 0.05)`;
+  const borderStyle = isDark ? "none" : "none";
 
   if (card.variant === "draft") {
     return (
