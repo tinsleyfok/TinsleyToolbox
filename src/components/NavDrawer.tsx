@@ -21,7 +21,10 @@ const NAV_ITEMS: NavItem[] = [
     to: "/animation",
     label: "Animation",
     isFolder: true,
-    children: [{ to: "/animation/onboarding", label: "Onboarding" }],
+    children: [
+      { to: "/animation/onboarding", label: "Onboarding" },
+      { to: "/animation/flip-card", label: "Flip card" },
+    ],
   },
   {
     to: "/inspiration",

@@ -4,5 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/TinsleyToolbox/",
+  base: "/",
+  server: {
+    open: true,
+    port: 5173,
+  },
 });

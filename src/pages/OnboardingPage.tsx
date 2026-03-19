@@ -36,7 +36,6 @@ export function OnboardingPage() {
           alt="Phone"
           className="hidden md:block w-full h-auto max-h-[90vh] relative z-2 pointer-events-none"
         />
-        {/* Fill the phone screen area with theme bg (behind the inset container) */}
         <div
           className="hidden md:block absolute z-0 rounded-[56px] overflow-hidden"
           style={{
