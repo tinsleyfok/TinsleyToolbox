@@ -1,7 +1,7 @@
 {
   "name": "Tinsley's Toolbox",
   "short_name": "Toolbox",
-  "start_url": "/play-with-claude/",
+  "start_url": "/TinsleyToolbox/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000"

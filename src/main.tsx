@@ -20,7 +20,7 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter basename="">
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "") || undefined}>
       <ThemeProvider>
       <Routes>
         <Route element={<App />}>

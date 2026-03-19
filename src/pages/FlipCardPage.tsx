@@ -5,7 +5,7 @@ import { IconLike, IconComment, IconBookmark, IconMore, IconShare } from "../com
 const ORANGE = "#EC652B";
 const BROWN_BAR = "#9E462B";
 const MONA_LISA_BLUR_BG = "#DDC1A7";
-const FRONT_IMAGE_URL = "/flip-card-front.png";
+const FRONT_IMAGE_URL = `${import.meta.env.BASE_URL}flip-card-front.png`;
 
 function IconBack({ size = 24, color = "#000" }: { size?: number; color?: string }) {
   return (
