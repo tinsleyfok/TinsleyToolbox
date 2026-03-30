@@ -6,7 +6,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "generate:lottie": "node scripts/generate-opening-lottie.mjs",
+    "redo:opening-particles": "node scripts/redo-opening-particles.mjs"
   },
   "repository": {
     "type": "git",

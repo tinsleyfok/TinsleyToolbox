@@ -146,5 +146,4 @@ _(Auto-updated after each run. Do not delete entries.)_
 - Types: `src/inspirations/types.ts`
 - Registry: `src/inspirations/registry.ts`
 - Screenshots directory: `public/inspirations/`
-- Page (no changes needed): `src/pages/ThemeInspirationPage.tsx`
-- Folder page (no changes needed): `src/pages/InspirationPage.tsx`
+- Note: The Themes inspiration UI was removed from the app; palette entries were deleted from the registry. Re-add a page/route if you restore the feature.

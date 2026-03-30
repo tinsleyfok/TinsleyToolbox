@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { useState } from "react";
+import type { MouseEvent, ReactNode, TouchEvent } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import {
   IconBookmarkFilled,
   IconBookmarkOutline,
@@ -18,6 +18,18 @@ import { useTheme } from "../hooks/useTheme";
 
 const LIKE_ACTIVE_RED = "#FF3B30";
 const BOOKMARK_GOLD = "#EAB308";
+const FLY_HEART_PX = 112;
+const PILL_HEART_PX = 16;
+const FLY_END_SCALE = PILL_HEART_PX / FLY_HEART_PX;
+
+/** Big-heart fly timeline (ms): burst → hold at full size → fly to pill → fade */
+const FLY_ANIM_BURST_MS = 200;
+const FLY_ANIM_HOLD_MS = 500;
+const FLY_ANIM_FLY_MS = 520;
+const FLY_ANIM_FADE_MS = 100;
+const FLY_ANIM_TOTAL_MS = FLY_ANIM_BURST_MS + FLY_ANIM_HOLD_MS + FLY_ANIM_FLY_MS + FLY_ANIM_FADE_MS;
+/** When the flying heart hits the pill (before fade-out). */
+const FLY_ANIM_LAND_AT_MS = FLY_ANIM_BURST_MS + FLY_ANIM_HOLD_MS + FLY_ANIM_FLY_MS;
 
 function formatSaveCount(n: number): string {
   if (n < 1000) return String(n);
@@ -40,6 +52,141 @@ export function LikePage() {
   const [saved, setSaved] = useState(false);
   const [saveCount, setSaveCount] = useState(2200);
   const [bookmarkAnimKey, setBookmarkAnimKey] = useState(0);
+
+  const [flySession, setFlySession] = useState<number | null>(null);
+  const lastArticleTapRef = useRef<{ t: number; x: number; y: number } | null>(null);
+  const articleAreaRef = useRef<HTMLDivElement>(null);
+  const likeIconTargetRef = useRef<HTMLSpanElement>(null);
+  const flyHeartRef = useRef<HTMLDivElement>(null);
+  const flyAnimRef = useRef<Animation | null>(null);
+  /** If true, land animation applies like + count + pill pop (double-tap started while outline). */
+  const applyLikeOnLandRef = useRef(false);
+  const likedRef = useRef(liked);
+  likedRef.current = liked;
+  const flySessionIdRef = useRef(0);
+  /** Viewport coords where the double-tap / double-click happened (burst origin). */
+  const flyOriginRef = useRef({ x: 0, y: 0 });
+
+  const triggerDoubleTapLike = useCallback((clientX: number, clientY: number) => {
+    applyLikeOnLandRef.current = !liked;
+    flyOriginRef.current = { x: clientX, y: clientY };
+    flySessionIdRef.current += 1;
+    setFlySession(flySessionIdRef.current);
+  }, [liked]);
+
+  function handleArticleDoubleClick(e: MouseEvent<HTMLDivElement>) {
+    triggerDoubleTapLike(e.clientX, e.clientY);
+  }
+
+  function handleArticleTouchEnd(e: TouchEvent<HTMLDivElement>) {
+    const touch = e.changedTouches[0];
+    const now = Date.now();
+    const x = touch.clientX;
+    const y = touch.clientY;
+    const prev = lastArticleTapRef.current;
+    if (prev && now - prev.t < 320) {
+      const dx = x - prev.x;
+      const dy = y - prev.y;
+      if (dx * dx + dy * dy < 55 * 55) {
+        triggerDoubleTapLike(x, y);
+        lastArticleTapRef.current = null;
+        return;
+      }
+    }
+    lastArticleTapRef.current = { t: now, x, y };
+  }
+
+  useLayoutEffect(() => {
+    if (flySession == null) return;
+
+    const targetEl = likeIconTargetRef.current;
+    const flyEl = flyHeartRef.current;
+    if (!targetEl || !flyEl) {
+      applyLikeOnLandRef.current = false;
+      setFlySession(null);
+      return;
+    }
+
+    flyAnimRef.current?.cancel();
+
+    const tr = targetEl.getBoundingClientRect();
+    const { x: sx, y: sy } = flyOriginRef.current;
+    const ex = tr.left + tr.width / 2;
+    const ey = tr.top + tr.height / 2;
+
+    const sessionId = flySession;
+
+    const oBurst = FLY_ANIM_BURST_MS / FLY_ANIM_TOTAL_MS;
+    const oHoldEnd = (FLY_ANIM_BURST_MS + FLY_ANIM_HOLD_MS) / FLY_ANIM_TOTAL_MS;
+    const oLand =
+      (FLY_ANIM_BURST_MS + FLY_ANIM_HOLD_MS + FLY_ANIM_FLY_MS) / FLY_ANIM_TOTAL_MS;
+
+    const keyframes: Keyframe[] = [
+      {
+        transform: `translate(${sx}px, ${sy}px) translate(-50%, -50%) scale(0.35) rotate(12deg)`,
+        opacity: 0,
+      },
+      {
+        transform: `translate(${sx}px, ${sy}px) translate(-50%, -50%) scale(1) rotate(12deg)`,
+        opacity: 1,
+        offset: oBurst,
+      },
+      {
+        transform: `translate(${sx}px, ${sy}px) translate(-50%, -50%) scale(1) rotate(12deg)`,
+        opacity: 1,
+        offset: oHoldEnd,
+      },
+      {
+        transform: `translate(${ex}px, ${ey}px) translate(-50%, -50%) scale(${FLY_END_SCALE}) rotate(0deg)`,
+        opacity: 1,
+        offset: oLand,
+      },
+      {
+        transform: `translate(${ex}px, ${ey}px) translate(-50%, -50%) scale(${FLY_END_SCALE}) rotate(0deg)`,
+        opacity: 0,
+        offset: 1,
+      },
+    ];
+
+    const anim = flyEl.animate(keyframes, {
+      duration: FLY_ANIM_TOTAL_MS,
+      /* Linear so keyframe offsets match real time — pill fills exactly when fly segment ends. */
+      easing: "linear",
+      fill: "forwards",
+    });
+    flyAnimRef.current = anim;
+
+    const landTimer = window.setTimeout(() => {
+      if (flySessionIdRef.current !== sessionId) return;
+      if (!applyLikeOnLandRef.current) return;
+      applyLikeOnLandRef.current = false;
+      if (!likedRef.current) {
+        setLiked(true);
+        setLikeCount((c) => c + 1);
+        setHeartAnimKey((k) => k + 1);
+      }
+    }, FLY_ANIM_LAND_AT_MS);
+
+    anim.onfinish = () => {
+      flyAnimRef.current = null;
+      if (flySessionIdRef.current === sessionId) {
+        setFlySession(null);
+        if (applyLikeOnLandRef.current && !likedRef.current) {
+          applyLikeOnLandRef.current = false;
+          setLiked(true);
+          setLikeCount((c) => c + 1);
+          setHeartAnimKey((k) => k + 1);
+        } else {
+          applyLikeOnLandRef.current = false;
+        }
+      }
+    };
+
+    return () => {
+      window.clearTimeout(landTimer);
+      anim.cancel();
+    };
+  }, [flySession]);
 
   function toggleLike() {
     if (liked) {
@@ -77,6 +224,24 @@ export function LikePage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative" style={{ background: outerBg }}>
+      {flySession != null ? (
+        <div
+          className="fixed inset-0 z-[300] pointer-events-none flex items-start justify-start"
+          aria-hidden
+        >
+          <div
+            ref={flyHeartRef}
+            className="absolute left-0 top-0"
+            style={{
+              width: FLY_HEART_PX,
+              height: FLY_HEART_PX,
+              willChange: "transform, opacity",
+            }}
+          >
+            <IconLikeFilled color={LIKE_ACTIVE_RED} size={FLY_HEART_PX} />
+          </div>
+        </div>
+      ) : null}
       <div className="phone relative w-full max-w-full h-dvh md:inline-block md:w-auto md:max-w-[90vw] md:max-h-[90vh] md:h-auto">
         <img
           src={`${import.meta.env.BASE_URL}Image/Phone.png`}
@@ -153,7 +318,13 @@ export function LikePage() {
                 className="flex flex-1 min-h-0 flex-col rounded-[36px] mx-auto w-full max-w-[386px] overflow-hidden"
                 style={{ background: card }}
               >
-                <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain px-6 pt-8 pb-6 [scrollbar-width:thin] [-webkit-overflow-scrolling:touch]">
+                <div
+                  ref={articleAreaRef}
+                  className="relative min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain px-6 pt-8 pb-6 [scrollbar-width:thin] [-webkit-overflow-scrolling:touch] touch-manipulation"
+                  onDoubleClick={handleArticleDoubleClick}
+                  onTouchEnd={handleArticleTouchEnd}
+                  role="presentation"
+                >
                   <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-5">
                       <h1 className="font-bold text-[24px] leading-[1.3] tracking-[0.01em] sm:text-[28px] md:text-[30px]">
@@ -221,7 +392,10 @@ export function LikePage() {
                     aria-label={liked ? "Unlike" : "Like"}
                     onClick={toggleLike}
                   >
-                    <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center">
+                    <span
+                      ref={likeIconTargetRef}
+                      className="flex h-4 w-4 flex-shrink-0 items-center justify-center"
+                    >
                       {liked ? (
                         <span key={heartAnimKey} className="inline-flex like-heart-pop">
                           <IconLikeFilled color={LIKE_ACTIVE_RED} size={16} />

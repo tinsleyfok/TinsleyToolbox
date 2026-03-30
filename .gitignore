@@ -1,8 +1,9 @@
 node_modules
 dist
 *.tsbuildinfo
-.tmp_verify_like.mjs
 .DS_Store
+**/.DS_Store
+scripts/.lottie-template-cache.json
 .claude/
 .cursor/rules/
 .mcp.json

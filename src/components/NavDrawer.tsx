@@ -32,11 +32,7 @@ const NAV_ITEMS: NavItem[] = [
     to: "/inspiration",
     label: "Inspiration",
     isFolder: true,
-    children: [
-      { to: "/inspiration/animations", label: "Animations" },
-      { to: "/inspiration/themes", label: "Themes" },
-      { to: "/inspiration/avatars", label: "Avatars" },
-    ],
+    children: [{ to: "/inspiration/animations", label: "Animations" }],
   },
 ];
 
