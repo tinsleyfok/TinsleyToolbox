@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { ReelCard, type ReelCardData } from "../components/ReelCard";
-
-const base = import.meta.env.BASE_URL;
 import { holoAvatar } from "../utils/holoAvatar";
+import { publicUrl, tinsleyProfilePhoto } from "../utils/publicAsset";
+
+const feedImg = (file: string) => publicUrl(`images/${file}`);
 const avatar = (seed: string) => holoAvatar(seed);
 
 const MOCK_CARDS: ReelCardData[] = [
@@ -11,7 +12,7 @@ const MOCK_CARDS: ReelCardData[] = [
     variant: "video",
     username: "adrianvvlog",
     avatarUrl: avatar("adrian"),
-    imageUrl: `${base}images/feed-hvac.jpg`,
+    imageUrl: feedImg("feed-hvac.jpg"),
     likes: "9.9K",
     comments: "3.4K",
     saves: "1.2K",
@@ -22,8 +23,8 @@ const MOCK_CARDS: ReelCardData[] = [
     id: "r2",
     variant: "image",
     username: "tinsleyfok",
-    avatarUrl: avatar("tinsleyfok"),
-    imageUrl: `${base}images/feed-food.jpg`,
+    avatarUrl: tinsleyProfilePhoto,
+    imageUrl: feedImg("feed-food.jpg"),
     imageAspect: "4:3",
     likes: "3.9K",
     comments: "230",
@@ -35,7 +36,7 @@ const MOCK_CARDS: ReelCardData[] = [
     variant: "image",
     username: "alcov.co",
     avatarUrl: avatar("alcov"),
-    imageUrl: `${base}images/feed-booblight.jpg`,
+    imageUrl: feedImg("feed-booblight.jpg"),
     imageAspect: "1:1",
     likes: "1.2k",
     comments: "230",
@@ -73,7 +74,7 @@ const MOCK_CARDS: ReelCardData[] = [
     variant: "video",
     username: "baoyue999",
     avatarUrl: avatar("baoyue"),
-    imageUrl: `${base}images/living-room.png`,
+    imageUrl: feedImg("living-room.png"),
     likes: "12.9K",
     comments: "1.1K",
     saves: "3.2K",
@@ -84,7 +85,7 @@ const MOCK_CARDS: ReelCardData[] = [
     variant: "image",
     username: "C~A~T~A~R~I~N",
     avatarUrl: avatar("catarin"),
-    imageUrl: `${base}images/feed-cat.jpg`,
+    imageUrl: feedImg("feed-cat.jpg"),
     imageAspect: "1:1",
     likes: "110",
     comments: "892",
@@ -96,7 +97,7 @@ const MOCK_CARDS: ReelCardData[] = [
     variant: "video",
     username: "baoyue999",
     avatarUrl: avatar("baoyue"),
-    imageUrl: `${base}images/feed-living.jpg`,
+    imageUrl: feedImg("feed-living.jpg"),
     likes: "4.2K",
     comments: "156",
     saves: "890",

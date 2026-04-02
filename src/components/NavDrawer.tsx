@@ -13,9 +13,9 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Home" },
   {
     to: "/app",
-    label: "Theme",
+    label: "App",
     isFolder: true,
-    children: [{ to: "/app", label: "Modern & Neutral" }],
+    children: [{ to: "/app", label: "V1" }],
   },
   {
     to: "/animation",

@@ -1,4 +1,5 @@
 import { useTheme } from "../hooks/useTheme";
+import { AvatarImg } from "./AvatarImg";
 
 type CardVariant = "video" | "image" | "article" | "discussion" | "draft";
 type CardSize = "portrait" | "landscape" | "square";
@@ -172,7 +173,7 @@ function CardFooter({ card, isDark }: { card: FeedCardData; isDark: boolean }) {
       )}
       <div className="flex items-center gap-1">
         {card.avatarUrl ? (
-          <img src={card.avatarUrl} alt="" className="w-3.5 h-3.5 rounded-full flex-shrink-0 object-cover" />
+          <AvatarImg src={card.avatarUrl} alt="" className="w-3.5 h-3.5 rounded-full flex-shrink-0 object-cover" />
         ) : (
           <div
             className="w-3.5 h-3.5 rounded-full flex-shrink-0"

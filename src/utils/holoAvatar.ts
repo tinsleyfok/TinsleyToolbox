@@ -6,22 +6,12 @@ function hashSeed(seed: string): number {
   return Math.abs(h);
 }
 
-const STYLES = ["adventurer", "fun-emoji", "lorelei", "notionists"];
+/** DiceBear only — xsgames/robohash often 404 or block hotlinking in browsers. */
+const STYLES = ["adventurer", "fun-emoji", "lorelei", "notionists", "pixel-art", "thumbs"];
 
 export function holoAvatar(username: string, _size = 56): string {
   const h = hashSeed(username);
-  const bucket = h % 20;
-
-  if (bucket < 13) {
-    const gender = h % 2 === 0 ? "female" : "male";
-    const id = (h % 70) + 1;
-    return `https://xsgames.co/randomusers/assets/avatars/${gender}/${id}.jpg`;
-  }
-
-  if (bucket < 17) {
-    return `https://robohash.org/${username}.png?set=set4&size=200x200`;
-  }
-
   const style = STYLES[h % STYLES.length];
-  return `https://api.dicebear.com/9.x/${style}/svg?seed=${username}&radius=50`;
+  const seed = encodeURIComponent(username);
+  return `https://api.dicebear.com/9.x/${style}/png?seed=${seed}&size=${Math.min(_size, 256)}`;
 }

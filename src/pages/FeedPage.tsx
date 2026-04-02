@@ -1,9 +1,9 @@
 import { FeedTopNav } from "../components/FeedTopNav";
 import { FeedCard, type FeedCardData } from "../components/FeedCard";
-
-const img = (id: number, w = 400, h = 500) => `https://picsum.photos/id/${id}/${w}/${h}`;
-const base = import.meta.env.BASE_URL;
 import { holoAvatar } from "../utils/holoAvatar";
+import { publicUrl, tinsleyProfilePhoto } from "../utils/publicAsset";
+
+const feedImg = (file: string) => publicUrl(`images/${file}`);
 const avatar = (seed: string) => holoAvatar(seed);
 
 const MOCK_LEFT: FeedCardData[] = [
@@ -15,7 +15,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "Golden hour clouds are unreal today",
     username: "skygazer",
     likes: "6.2K",
-    imageUrl: `${base}images/feed-clouds.png`,
+    imageUrl: feedImg("feed-clouds.png"),
     avatarUrl: avatar("skygazer"),
   },
   {
@@ -25,7 +25,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "The whole squad showed up today",
     username: "pineviewpuppies",
     likes: "15.6K",
-    imageUrl: `${base}images/feed-puppies-row.png`,
+    imageUrl: feedImg("feed-puppies-row.png"),
     avatarUrl: avatar("pineview"),
   },
   // ── Mixed content ──
@@ -45,7 +45,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "How I hid my ugly HVAC panel without blocking...",
     username: "adrianvvlog",
     likes: "1.6K",
-    imageUrl: img(1015, 400, 530),
+    imageUrl: feedImg("feed-hvac.jpg"),
     avatarUrl: avatar("adrian"),
   },
   {
@@ -55,7 +55,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "Kimono girl reporting for duty",
     username: "chihuahua.queen",
     likes: "8.3K",
-    imageUrl: `${base}images/feed-chihuahua.png`,
+    imageUrl: feedImg("feed-chihuahua.png"),
     avatarUrl: avatar("chihuahua"),
   },
   {
@@ -65,7 +65,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "Best coffee shops in Shibuya",
     username: "tokyodrifter",
     likes: "4.2K",
-    imageUrl: img(431, 400, 300),
+    imageUrl: feedImg("feed-food.jpg"),
     avatarUrl: avatar("tokyo"),
   },
   {
@@ -75,7 +75,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "Sunrise hike was worth the early alarm",
     username: "trailvibes",
     likes: "8.1K",
-    imageUrl: img(29, 400, 530),
+    imageUrl: feedImg("feed-decor1.jpg"),
     avatarUrl: avatar("trailvibes"),
   },
   {
@@ -94,8 +94,8 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "My favourite food in GZ!",
     username: "tinsleyfok",
     likes: "3.9K",
-    imageUrl: img(292, 400, 300),
-    avatarUrl: avatar("tinsleyfok"),
+    imageUrl: feedImg("feed-food.jpg"),
+    avatarUrl: tinsleyProfilePhoto,
   },
   {
     id: "l10",
@@ -104,7 +104,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "DIY floating shelves that actually hold weight",
     username: "makerstudio",
     likes: "3.3K",
-    imageUrl: img(342, 400, 530),
+    imageUrl: feedImg("feed-interior.jpg"),
     avatarUrl: avatar("maker"),
   },
   {
@@ -123,7 +123,7 @@ const MOCK_LEFT: FeedCardData[] = [
     title: "Cozy reading nook transformation",
     username: "longtimenosea",
     likes: "621",
-    imageUrl: img(336, 400, 530),
+    imageUrl: feedImg("living-room.png"),
     avatarUrl: avatar("longtime"),
   },
 ];
@@ -137,7 +137,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Valentine's day with my two besties",
     username: "pineviewpuppies",
     likes: "12.1K",
-    imageUrl: `${base}images/feed-puppies-two.png`,
+    imageUrl: feedImg("feed-puppies-two.png"),
     avatarUrl: avatar("pineview"),
   },
   {
@@ -147,7 +147,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Made a bead curtain for my room and it's so dreamy",
     username: "sparkle.craft",
     likes: "4.7K",
-    imageUrl: `${base}images/feed-beads.png`,
+    imageUrl: feedImg("feed-beads.png"),
     avatarUrl: avatar("sparkle"),
   },
   // ── Mixed content ──
@@ -158,7 +158,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Morning light in my apartment renovation",
     username: "baoyue999",
     likes: "12.9K",
-    imageUrl: img(188, 400, 530),
+    imageUrl: feedImg("living-room.png"),
     avatarUrl: avatar("baoyue"),
   },
   {
@@ -177,7 +177,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Weekend escape to the countryside",
     username: "wanderlust.anna",
     likes: "1.8K",
-    imageUrl: img(167, 400, 300),
+    imageUrl: feedImg("feed-living.jpg"),
     avatarUrl: avatar("anna"),
   },
   {
@@ -187,7 +187,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Street food tour in Bangkok's hidden alleys",
     username: "foodie.explorer",
     likes: "5.7K",
-    imageUrl: img(225, 400, 530),
+    imageUrl: feedImg("feed-food.jpg"),
     avatarUrl: avatar("foodie"),
   },
   {
@@ -206,7 +206,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Sunday morning coffee with a view",
     username: "slowmornings",
     likes: "4.5K",
-    imageUrl: img(425, 400, 300),
+    imageUrl: feedImg("feed-decor2.jpg"),
     avatarUrl: avatar("slowmornings"),
   },
   {
@@ -216,7 +216,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "Found this gem of a bookstore in Lisbon",
     username: "wanderlust.anna",
     likes: "956",
-    imageUrl: img(24, 400, 530),
+    imageUrl: feedImg("feed-cat.jpg"),
     avatarUrl: avatar("anna"),
   },
   {
@@ -235,7 +235,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "My vintage camera collection growing nicely",
     username: "analog.dreams",
     likes: "789",
-    imageUrl: img(250, 400, 530),
+    imageUrl: feedImg("feed-booblight.jpg"),
     avatarUrl: avatar("analog"),
   },
   {
@@ -245,7 +245,7 @@ const MOCK_RIGHT: FeedCardData[] = [
     title: "My plant collection after 3 years",
     username: "greenthumb.daily",
     likes: "2.1K",
-    imageUrl: img(152, 400, 300),
+    imageUrl: feedImg("feed-decor1.jpg"),
     avatarUrl: avatar("green"),
   },
 ];

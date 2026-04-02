@@ -3,17 +3,21 @@ import { useTheme } from "../hooks/useTheme";
 import { ProfileHeader } from "../components/ProfileHeader";
 import { FeedCard, type FeedCardData } from "../components/FeedCard";
 import { holoAvatar } from "../utils/holoAvatar";
+import { publicUrl, tinsleyProfilePhoto } from "../utils/publicAsset";
 
 const TABS = ["My Card", "Collections", "Likes"] as const;
 
-const myAvatar = `${import.meta.env.BASE_URL}Image/avatar-tinsley.png`;
+const feedImg = (file: string) => publicUrl(`images/${file}`);
 
-const FIGMA = {
-  drafts: "https://s3-alpha-sig.figma.com/img/cf16/a029/4fb20e47535eda47d14b8c4635038e6e?Expires=1773619200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=KN384NVUa-EOM3gN4s2P9UwBvEj5o8C6zsBG-MkPq6SrKpSwPzPi3wfVnB33WSyIFuHgyEEESi2LFohE8m7yQUYmL5V4ANpbcUbce-ufc2zxhMcWNyU8OiKG7B2468lULZlDqURjiT32oBzYkgorYOZpcOdDqI07hPXA9JewGj7xkNeSVnfPFtUS2b2btYiAcC6OtcTr3UWcnFISC4-V7TUYHw~ofYUy4I5E7YxdApZLgzbmkGgL3MjbIUtOf5fNePTrMfCx9iCKdmXkWi~i2MiMvy7qwbYUi8tafpqBIxdrewOel~4d0aTN-WNtiK9lfCtlOJGpALddVnbqMsA~zA__",
-  petShop: "https://s3-alpha-sig.figma.com/img/6da0/331e/ff475ebb19774963e902f325daf15588?Expires=1773619200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=bcbWT08Azc6gaY9BucMFeVnYV87dG9R072Q3Jn8j~shS0HzVumNc1VnY~hHPlZ~mUT8IcKvLq112XcJ9qdXiITZtaJJ6znYbpQ-RYb5W5FLjYbJZVLx6lcyGf8jTqRQOixCqlRqIJbUStRKTaiyFqnr-lM3YUWj1ahdxxlV8HbsDFucgvlzlWhts70Njyx8XoI9fq58zoOU0Un0RqZzpxR4zbosO~3FJ57R~pyy2A61Uhm2GpWEaidnsNpaLcs3wV9C9xHl3nlwPAhqbevRf9pxE-mxern~mldprNwNiwzm8YtgWsmxIsnhkkLmo8TWA5--7ck3DEhaWTZ79X06taw__",
-  sushi: "https://s3-alpha-sig.figma.com/img/0ee2/12d0/ef51bdac6bb8c402f6d4b30162b968ff?Expires=1773619200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=QIfh~8MGiORakmsiY5dcv7qNgPnKsvAgm12qetU8yE4rcvs5Q9FVUEJvb0zDuW3w7tdPdGcIQHwfhFexxvn9IrsaM054dieQ~R1n7LNirKgg69Z2B4EfvSvW-wi44A2apBGg6Oih~vobzLq-FQS9eE7BMBfRC1gGVcjUq3xfamL3qyUVmW2W5gAM94mbnB8rJdi18YYGOsi6sEO7OnkUMXOaGqRBXHPVO0zps9hfQiriFFYSZVyWhnn2mofpS7F5JbIMIH-HpHUtd6IoUEDJprFz2rFEqUd2LlFKbaRQNXzzObxy6FkKeVfkcNCOVFXW3al8HiUre7rVwqxzhShiZg__",
-  lego: "https://s3-alpha-sig.figma.com/img/6394/68bf/b37dad833c3276cbf89ff27734659065?Expires=1773619200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=hYn-0wpfNB4doPr7qE-OitjbrukYR3FFPYAFp~lb283RmPHr1DjczXK2yfIl9u7mQnUKOmj07keKJW5SGTKN5GDhrarFr~1tbE-5CiIIMDcCPMsL5SIuxrB3rnHYiYEkS2Y3sg5DBAraWZx9K~Zc~zmG7mXD9iQ0tsZ7hrWUqmJDJQRAmr9GST13h8piV5buS9GvgabWZzlpA~fbrf5GcmaDdiky-0C6RRvk84tJEFhTMnx47IJ-MrxVnN5sbCGdHti2qKWBIDFhguNqAlTVrFqzgBGBV0mGReKU4Ro~gbkaPIePZHVJoCCm8THFGCkjmYugHLRdn5mvu8wYEUMQaA__",
-  newMexico: "https://s3-alpha-sig.figma.com/img/231d/4c54/60163d14a55087c7cd56eb54c629232e?Expires=1773619200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=tWElTuraw4uldIMkFVg~noFcNt9I85AkMDT-n84437l5ofyL01SShTUUoKKDYCAHkgenh-qKzaIR~EjTDmfiMukEbb5Y1qQp5MG8ECRtDlLdjmJ8~zssenF2Ct~p0GQTSUPjG2q5WOCog07Tfch5A~q98-KvhpgQgEs4pey7PAq1wONJv~gwXmunq1-oa0wr56kHM~oeKKmj9hG-lfGRluEHtsnXbIw4sx913TVe93pwl3Xb51tsUjSPsx4SfzHmeTKgiUoZ5pAHLLcw6oemARmA7-Tx8EOVbqS5qF3nesgEP2fmBsEpJ-G0EsSwWKscSiFXOq6YdVzt7DPWLyqsTQ__",
+const myAvatar = tinsleyProfilePhoto;
+
+/** Local `public/images` assets — reliable offline and on GitHub Pages. */
+const MY_CARD_MEDIA = {
+  drafts: feedImg("feed-decor2.jpg"),
+  petShop: feedImg("feed-chihuahua.png"),
+  sushi: feedImg("feed-food.jpg"),
+  lego: feedImg("feed-beads.png"),
+  newMexico: feedImg("feed-decor1.jpg"),
 };
 
 const MY_CARDS_LEFT: FeedCardData[] = [
@@ -24,7 +28,7 @@ const MY_CARDS_LEFT: FeedCardData[] = [
     title: "Drafts",
     username: "",
     likes: "",
-    imageUrl: FIGMA.drafts,
+    imageUrl: MY_CARD_MEDIA.drafts,
   },
   {
     id: "mc3",
@@ -33,7 +37,7 @@ const MY_CARDS_LEFT: FeedCardData[] = [
     title: "Sushi iShikawa @NYC",
     username: "tinsleyfok",
     likes: "3.9K",
-    imageUrl: FIGMA.sushi,
+    imageUrl: MY_CARD_MEDIA.sushi,
     avatarUrl: myAvatar,
     views: "10,480",
   },
@@ -44,7 +48,7 @@ const MY_CARDS_LEFT: FeedCardData[] = [
     title: "The lego I built these years",
     username: "tinsleyfok",
     likes: "12",
-    imageUrl: FIGMA.lego,
+    imageUrl: MY_CARD_MEDIA.lego,
     avatarUrl: myAvatar,
     views: "489",
   },
@@ -58,7 +62,7 @@ const MY_CARDS_RIGHT: FeedCardData[] = [
     title: "Fake smile buddy",
     username: "tinsleyfok",
     likes: "1.6K",
-    imageUrl: FIGMA.petShop,
+    imageUrl: MY_CARD_MEDIA.petShop,
     avatarUrl: myAvatar,
     views: "100,480",
   },
@@ -69,7 +73,7 @@ const MY_CARDS_RIGHT: FeedCardData[] = [
     title: "New Mexico - Marfa",
     username: "tinsleyfok",
     likes: "2",
-    imageUrl: FIGMA.newMexico,
+    imageUrl: MY_CARD_MEDIA.newMexico,
     avatarUrl: myAvatar,
     views: "89",
   },
@@ -83,7 +87,7 @@ const COLLECTIONS_LEFT: FeedCardData[] = [
     title: "Interior inspo",
     username: "tinsleyfok",
     likes: "",
-    imageUrl: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&h=530&fit=crop",
+    imageUrl: feedImg("feed-interior.jpg"),
     avatarUrl: myAvatar,
     views: "24 cards",
   },
@@ -94,7 +98,7 @@ const COLLECTIONS_LEFT: FeedCardData[] = [
     title: "Travel bucket list",
     username: "tinsleyfok",
     likes: "",
-    imageUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop",
+    imageUrl: feedImg("living-room.png"),
     avatarUrl: myAvatar,
     views: "18 cards",
   },
@@ -108,7 +112,7 @@ const COLLECTIONS_RIGHT: FeedCardData[] = [
     title: "Food spots GZ",
     username: "tinsleyfok",
     likes: "",
-    imageUrl: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop",
+    imageUrl: feedImg("feed-food.jpg"),
     avatarUrl: myAvatar,
     views: "31 cards",
   },
@@ -119,7 +123,7 @@ const COLLECTIONS_RIGHT: FeedCardData[] = [
     title: "Design references",
     username: "tinsleyfok",
     likes: "",
-    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=530&fit=crop",
+    imageUrl: feedImg("feed-decor2.jpg"),
     avatarUrl: myAvatar,
     views: "12 cards",
   },
@@ -133,7 +137,7 @@ const LIKES_LEFT: FeedCardData[] = [
     title: "How to make the perfect matcha",
     username: "matchalover",
     likes: "24.5K",
-    imageUrl: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400&h=530&fit=crop",
+    imageUrl: feedImg("feed-food.jpg"),
     avatarUrl: holoAvatar("matcha"),
   },
   {
@@ -164,7 +168,7 @@ const LIKES_RIGHT: FeedCardData[] = [
     title: "Street photography tips",
     username: "shuttercraft",
     likes: "11.3K",
-    imageUrl: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=530&fit=crop",
+    imageUrl: feedImg("feed-cat.jpg"),
     avatarUrl: holoAvatar("shutter"),
   },
 ];

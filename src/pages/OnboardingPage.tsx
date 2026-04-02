@@ -29,7 +29,9 @@ export function OnboardingPage() {
   const isDark = theme === "dark";
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center relative">
+    <div
+      className={`min-h-screen flex items-center justify-center relative ${isDark ? "bg-black" : "bg-white"}`}
+    >
       <div className="phone relative w-full max-w-full h-dvh md:inline-block md:w-auto md:max-w-[90vw] md:max-h-[90vh] md:h-auto">
         <img
           src={`${import.meta.env.BASE_URL}Image/Phone.png`}

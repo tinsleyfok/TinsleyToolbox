@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useLayoutEffect,
+  type ReactNode,
+} from "react";
 
 type Theme = "light" | "dark";
 
@@ -21,6 +28,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       return next;
     });
   }, []);
+
+  useLayoutEffect(() => {
+    document.documentElement.dataset.siteTheme = theme;
+  }, [theme]);
 
   return (
     <ThemeContext value={{ theme, toggleTheme }}>

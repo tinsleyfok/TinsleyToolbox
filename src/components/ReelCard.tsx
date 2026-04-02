@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo } from "react";
 import { useTheme } from "../hooks/useTheme";
 import { IconLike, IconComment, IconBookmark, IconShare, IconMore, IconQuoteOpen, IconQuoteClose, IconPlus } from "./Icons";
+import { AvatarImg } from "./AvatarImg";
 
 type ReelVariant = "video" | "image" | "discussion" | "article";
 type ImageAspect = "1:1" | "4:3" | "3:4";
@@ -366,7 +367,16 @@ function ActionBtn({ color, count, children }: { color: string; count?: string; 
 /* ─── Shared helpers ─── */
 
 function Avatar({ url, size, isDark }: { url?: string; size: number; isDark?: boolean }) {
-  if (url) return <img src={url} alt="" className="rounded-full object-cover flex-shrink-0" style={{ width: size, height: size }} />;
+  if (url) {
+    return (
+      <AvatarImg
+        src={url}
+        alt=""
+        className="rounded-full object-cover flex-shrink-0"
+        style={{ width: size, height: size }}
+      />
+    );
+  }
   return <div className="rounded-full flex-shrink-0" style={{ width: size, height: size, background: isDark ? "#333" : "#ddd" }} />;
 }
 

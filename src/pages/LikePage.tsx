@@ -15,6 +15,8 @@ import {
   IconPlusSmall,
 } from "../components/LikeHeaderIcons";
 import { useTheme } from "../hooks/useTheme";
+import { AvatarImg } from "../components/AvatarImg";
+import { holoAvatar } from "../utils/holoAvatar";
 
 const LIKE_ACTIVE_RED = "#FF3B30";
 const BOOKMARK_GOLD = "#EAB308";
@@ -276,11 +278,12 @@ export function LikePage() {
               </div>
               <div className="flex justify-center min-w-0 max-w-full">
                 <div className="flex items-center gap-2 min-w-0 max-w-[min(100%,220px)]">
-                  <div
-                    className={`h-7 w-7 rounded-full flex-shrink-0 bg-gradient-to-br from-amber-400 to-rose-500 ring-1 ${
+                  <AvatarImg
+                    src={holoAvatar("alcov", 56)}
+                    alt=""
+                    className={`h-7 w-7 rounded-full flex-shrink-0 object-cover ring-1 ${
                       isDark ? "ring-white/10" : "ring-black/10"
                     }`}
-                    aria-hidden
                   />
                   <span className="font-bold text-[15px] leading-tight tracking-[-0.01em] truncate">
                     alcov.co

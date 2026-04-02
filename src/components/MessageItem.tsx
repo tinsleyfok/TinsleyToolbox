@@ -1,4 +1,5 @@
 import { useTheme } from "../hooks/useTheme";
+import { AvatarImg } from "./AvatarImg";
 
 export interface MessageData {
   id: string;
@@ -17,7 +18,7 @@ export function MessageItem({ data }: { data: MessageData }) {
     <button className="w-full flex items-center bg-transparent border-none cursor-pointer text-left px-4 py-3">
       <div className="flex items-center gap-3 w-full">
         {data.avatarUrl ? (
-          <img src={data.avatarUrl} alt="" className="w-14 h-14 rounded-full flex-shrink-0 object-cover" />
+          <AvatarImg src={data.avatarUrl} alt="" className="w-14 h-14 rounded-full flex-shrink-0 object-cover" />
         ) : (
           <div
             className="w-14 h-14 rounded-full flex-shrink-0"

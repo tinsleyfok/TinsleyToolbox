@@ -281,16 +281,22 @@
 
 .app-content {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding-bottom: 56px;
 }
 
 @media (min-width: 769px) {
+  /* Light: desk behind phone matches app (see ThemeProvider `data-site-theme`). */
   .app-shell {
-    background: #000;
+    background: #f2f2f2;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  html[data-site-theme="dark"] .app-shell {
+    background: #000;
   }
 
   .app-phone-wrapper {
@@ -355,7 +361,22 @@
   max-height: 161.11cqi;
 }
 
-/* ── Opening page: Gist wordmark ── */
+/* ── Opening page: phone + Gist wordmark ── */
+@keyframes opening-phone-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.opening-phone-container {
+  animation: opening-phone-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 @keyframes opening-gist-fade-in {
   from {
     opacity: 0;
@@ -372,6 +393,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .opening-phone-container {
+    animation: none;
+  }
+
   .opening-gist-fade {
     opacity: 1;
     animation: none;

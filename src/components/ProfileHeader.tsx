@@ -1,4 +1,6 @@
 import { useTheme } from "../hooks/useTheme";
+import { AvatarImg } from "./AvatarImg";
+import { tinsleyProfilePhoto } from "../utils/publicAsset";
 
 const STATS = [
   { value: "98", label: "Following" },
@@ -11,12 +13,10 @@ export function ProfileHeader() {
   const isDark = theme === "dark";
   const textColor = isDark ? "#ffffff" : "#000000";
   const subtleColor = isDark ? "rgba(255,255,255,0.48)" : "rgba(0,0,0,0.48)";
-  const avatarUrl = `${import.meta.env.BASE_URL}Image/avatar-tinsley.png`;
-
   return (
     <div className="flex flex-col items-center pt-4 pb-4 px-6">
       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden">
-        <img src={avatarUrl} alt="tinsleyfok" className="w-full h-full object-cover" />
+        <AvatarImg src={tinsleyProfilePhoto} alt="tinsleyfok" className="w-full h-full object-cover" />
       </div>
 
       <div className="flex items-center gap-6 mb-3">
