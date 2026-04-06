@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 import { useTheme } from "../hooks/useTheme";
 
 const FILTERS = ["All", "Media", "Text"] as const;
 
 export function FeedTopNav() {
+  const navigate = useNavigate();
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const [active, setActive] = useState<string>("All");
@@ -67,8 +69,13 @@ export function FeedTopNav() {
         ))}
       </div>
 
-      <button className="w-8 h-8 flex items-center justify-center bg-transparent border-none cursor-pointer flex-shrink-0">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <button
+        type="button"
+        aria-label="Search"
+        className="flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center border-none bg-transparent"
+        onClick={() => navigate("/app/mvp", { state: { openSearch: true } })}
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
           <path d="M10.9149 1.75C15.9799 1.75002 20.0848 5.85505 20.0848 10.915C20.0848 13.09 19.3302 15.0803 18.0702 16.6553L22.5164 21.1064C22.7115 21.3017 22.7116 21.6183 22.5164 21.8135L21.8133 22.5166C21.6181 22.7118 21.3016 22.7117 21.1063 22.5166L16.6551 18.0703C15.0801 19.3303 13.0899 20.085 10.9149 20.085C5.8549 20.085 1.74987 15.98 1.74985 10.915C1.74985 5.85504 5.85489 1.75 10.9149 1.75ZM10.9149 3.75C6.95989 3.75 3.74985 6.96004 3.74985 10.915C3.74987 14.875 6.9599 18.085 10.9149 18.085C14.8749 18.0849 18.0848 14.875 18.0848 10.915C18.0848 6.96005 14.8749 3.75002 10.9149 3.75Z" fill={isDark ? "#ffffff" : "#000000"} />
         </svg>
       </button>

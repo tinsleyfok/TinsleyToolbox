@@ -6,7 +6,7 @@ import { publicUrl, tinsleyProfilePhoto } from "../utils/publicAsset";
 const feedImg = (file: string) => publicUrl(`images/${file}`);
 const avatar = (seed: string) => holoAvatar(seed);
 
-const MOCK_LEFT: FeedCardData[] = [
+export const MOCK_LEFT: FeedCardData[] = [
   // ── Custom images up top ──
   {
     id: "l1",
@@ -128,7 +128,7 @@ const MOCK_LEFT: FeedCardData[] = [
   },
 ];
 
-const MOCK_RIGHT: FeedCardData[] = [
+export const MOCK_RIGHT: FeedCardData[] = [
   // ── Custom images first ──
   {
     id: "r1",

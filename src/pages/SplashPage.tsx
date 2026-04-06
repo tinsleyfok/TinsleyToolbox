@@ -7,7 +7,7 @@ const GIST_LEFT_PCT = (89 / 402) * 100;
 const GIST_TOP_PCT = (394 / 874) * 100;
 const GIST_WIDTH_PCT = (202 / 402) * 100;
 
-export function OpeningPage() {
+export function SplashPage() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const openingLayerRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ export function OpeningPage() {
           style={{ top: 6, left: 6, right: 6, bottom: 6, background: openingBg }}
         />
         <div
-          className="phone-container flex flex-col overflow-hidden"
+          className="phone-container opening-phone-container flex flex-col overflow-hidden"
           data-theme={theme}
           style={{ background: openingBg }}
         >

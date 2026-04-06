@@ -17,6 +17,8 @@ export interface FeedCardData {
   avatarUrl?: string;
   body?: string;
   views?: string;
+  /** Figma MVP variant B: 1px hairline (e.g. rgba(0,0,0,0.12) light / white 12% dark). */
+  mvpOutline?: boolean;
 }
 
 export function FeedCard({ card }: { card: FeedCardData }) {
@@ -53,7 +55,7 @@ export function FeedCard({ card }: { card: FeedCardData }) {
 
   return (
     <div
-      className="rounded-2xl overflow-hidden w-full"
+      className={`rounded-2xl overflow-hidden w-full ${card.mvpOutline ? "ring-1 ring-black/[0.12] dark:ring-white/[0.12]" : ""}`}
       style={{ background: cardBg, border: borderStyle }}
     >
       {card.variant === "article" ? (

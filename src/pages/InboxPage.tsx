@@ -1,6 +1,9 @@
+import { useLocation, useNavigate } from "react-router";
 import { useTheme } from "../hooks/useTheme";
 import { MessageItem, type MessageData } from "../components/MessageItem";
 import { holoAvatar } from "../utils/holoAvatar";
+import { tinsleyProfilePhoto } from "../utils/publicAsset";
+import { AvatarImg } from "../components/AvatarImg";
 
 const ACTIVITIES = [
   {
@@ -35,36 +38,134 @@ const MOCK_MESSAGES: MessageData[] = [
   { id: "m3", username: "smartyquang", message: "[Image]", time: "1w", avatarUrl: holoAvatar("smartyquang") },
   { id: "m4", username: "rockingao", message: ";)", time: "1w", avatarUrl: holoAvatar("rockingao") },
   { id: "m5", username: "Junwei", message: "Sure!", time: "1w", avatarUrl: holoAvatar("Junwei") },
+  { id: "m6", username: "Junwei", message: "I cannot bewlieve this is what you want to say.", time: "1w", avatarUrl: holoAvatar("Junwei") },
   { id: "m7", username: "helloworld", message: "[Image]", time: "3 hrs ago", avatarUrl: holoAvatar("helloworld") },
 ];
 
+/** Figma screen fill — light inbox (MVP + shell via AppPage) */
+const INBOX_PAGE_BG_LIGHT = "#FAFAFA";
+
+/** Figma 5357:379596 — extra row order for MVP message list */
+const MVP_MESSAGE_ORDER = ["m1", "m2", "m3", "m4", "m5", "m6", "m7"];
+
 export function InboxPage() {
+  const navigate = useNavigate();
   const { theme } = useTheme();
+  const { pathname } = useLocation();
   const isDark = theme === "dark";
+  const isMvpInbox = pathname.startsWith("/app/mvp/inbox");
+
+  const headerBg = isDark ? "#000000" : INBOX_PAGE_BG_LIGHT;
+  const headerFg = isDark ? "#ffffff" : "#000000";
+
+  const mvpPageBg = isDark ? "#000000" : INBOX_PAGE_BG_LIGHT;
+  const mvpNavFg = isDark ? "#ffffff" : "#000000";
+  const mvpActivityBg = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.04)";
+
+  const mvpMessagesById = Object.fromEntries(MOCK_MESSAGES.map((m) => [m.id, m]));
+  const mvpOrdered = MVP_MESSAGE_ORDER.map((id) => mvpMessagesById[id]).filter(Boolean);
+
+  if (isMvpInbox) {
+    return (
+      <div className="min-h-full" style={{ background: mvpPageBg }}>
+        {/* Same top bar geometry as MVP home (MvpGistTopBar): spacer | title | profile */}
+        <header
+          className="sticky top-0 z-40 px-2 pt-1 pb-2"
+          style={{
+            background: mvpPageBg,
+            paddingTop: "max(4px, env(safe-area-inset-top, 0px))",
+          }}
+        >
+          <div className="flex h-11 items-center justify-between gap-2 px-2">
+            <div className="h-10 w-10 shrink-0" aria-hidden />
+            <h1
+              className="pointer-events-none flex-1 text-center font-rethink text-2xl font-bold tracking-[0.01em]"
+              style={{ color: mvpNavFg, lineHeight: 1.3 }}
+            >
+              Inbox
+            </h1>
+            <button
+              type="button"
+              className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent"
+              aria-label="Profile"
+              onClick={() => navigate("/app/mvp/profile")}
+            >
+              <div className="h-[28px] w-[28px] overflow-hidden rounded-full ring-1 ring-black/10 dark:ring-white/10">
+                <AvatarImg src={tinsleyProfilePhoto} alt="" className="h-full w-full object-cover" />
+              </div>
+            </button>
+          </div>
+        </header>
+
+        {/* Content: column gap 24px, padding 8px 0; 42px before Messages block (Figma) */}
+        <div className="flex flex-col gap-6 py-2">
+          <div className="flex justify-center gap-9 px-4">
+            {ACTIVITIES.map((a, i) => (
+              <button
+                key={i}
+                type="button"
+                className="flex h-20 w-20 shrink-0 cursor-pointer items-center justify-center rounded-full border-none"
+                style={{ background: mvpActivityBg }}
+              >
+                {a.icon(mvpNavFg)}
+              </button>
+            ))}
+          </div>
+
+          <section className="flex flex-col gap-2 pb-9">
+            <div className="flex items-center gap-2.5 px-4">
+              <h2 className="font-rethink text-base font-bold" style={{ color: mvpNavFg }}>
+                Messages
+              </h2>
+            </div>
+            <div className="flex flex-col gap-2">
+              {mvpOrdered.map((msg) => (
+                <MessageItem key={msg.id} data={msg} variant="mvp" />
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      {/* Fixed header - always visible */}
+    <div className="min-h-full" style={{ background: isDark ? "#000000" : INBOX_PAGE_BG_LIGHT }}>
       <div
-        className="sticky top-0 left-0 right-0 z-40 flex items-center justify-center h-12 px-4"
-        style={{ background: isDark ? "#000000" : "#f2f2f2" }}
+        className="sticky top-0 left-0 right-0 z-40 px-2 pt-1 pb-2"
+        style={{
+          background: headerBg,
+          paddingTop: "max(4px, env(safe-area-inset-top, 0px))",
+        }}
       >
-        <span
-          className="font-rethink text-[18px] font-bold leading-[25px]"
-          style={{ color: isDark ? "#ffffff" : "#000000" }}
-        >
-          Inbox
-        </span>
+        <div className="flex h-11 items-center justify-between gap-2 px-2">
+          <div className="h-10 w-10 shrink-0" aria-hidden />
+          <span
+            className="pointer-events-none flex-1 text-center font-rethink text-[18px] font-bold leading-[25px]"
+            style={{ color: headerFg }}
+          >
+            Inbox
+          </span>
+          <button
+            type="button"
+            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent"
+            aria-label="Profile"
+            onClick={() => navigate("/app/profile")}
+          >
+            <div className="h-[28px] w-[28px] overflow-hidden rounded-full ring-1 ring-black/10 dark:ring-white/10">
+              <AvatarImg src={tinsleyProfilePhoto} alt="" className="h-full w-full object-cover" />
+            </div>
+          </button>
+        </div>
       </div>
 
-      {/* Content */}
       <div>
-        {/* Activities */}
-        <div className="px-4 flex gap-4 py-4">
+        <div className="flex gap-4 px-4 py-4">
           {ACTIVITIES.map((a, i) => (
             <button
               key={i}
-              className="w-20 h-20 rounded-full flex items-center justify-center border-none cursor-pointer"
+              type="button"
+              className="flex h-20 w-20 cursor-pointer items-center justify-center rounded-full border-none"
               style={{
                 background: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)",
               }}
@@ -74,8 +175,7 @@ export function InboxPage() {
           ))}
         </div>
 
-        {/* Message heading */}
-        <div className="px-5 pt-2 pb-2">
+        <div className="px-5 pb-2 pt-2">
           <span
             className="font-rethink text-[20px] font-bold leading-[28px]"
             style={{ color: isDark ? "#ffffff" : "#000000" }}
@@ -84,7 +184,6 @@ export function InboxPage() {
           </span>
         </div>
 
-        {/* Message list */}
         <div>
           {MOCK_MESSAGES.map((msg) => (
             <MessageItem key={msg.id} data={msg} />

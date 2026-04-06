@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "react-router";
 import { useTheme } from "../hooks/useTheme";
 
 interface CreateSheetProps {
@@ -47,14 +48,18 @@ const ACTIONS = [
 
 export function CreateSheet({ open, onClose }: CreateSheetProps) {
   const { theme } = useTheme();
+  const { pathname } = useLocation();
+  const isMvp = pathname.startsWith("/app/mvp");
   const isDark = theme === "dark";
   const iconColor = isDark ? "#ffffff" : "#000000";
+  const sheetBottom = isMvp
+    ? "calc(84px + env(safe-area-inset-bottom, 0px))"
+    : "88px";
 
   return (
     <AnimatePresence>
       {open && (
         <>
-          {/* Overlay - 64% black */}
           <motion.div
             className="absolute inset-0 z-[200]"
             style={{ background: "rgba(0,0,0,0.64)" }}
@@ -64,10 +69,12 @@ export function CreateSheet({ open, onClose }: CreateSheetProps) {
             onClick={onClose}
           />
 
-          {/* Bottom sheet */}
           <motion.div
-            className="absolute bottom-[68px] left-3 right-3 z-[205] rounded-3xl"
-            style={{ background: isDark ? "#1e1e1e" : "#ffffff" }}
+            className="absolute left-3 right-3 z-[205] rounded-3xl"
+            style={{
+              bottom: sheetBottom,
+              background: isDark ? "#1e1e1e" : "#ffffff",
+            }}
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
@@ -77,19 +84,18 @@ export function CreateSheet({ open, onClose }: CreateSheetProps) {
               {ACTIONS.map((action) => (
                 <button
                   key={action.label}
-                  className="w-full flex items-center gap-4 px-4 h-[60px] bg-transparent border-none cursor-pointer"
+                  type="button"
+                  className="flex h-[60px] w-full cursor-pointer items-center gap-4 border-none bg-transparent px-4"
                   style={{ color: iconColor }}
                   onClick={onClose}
                 >
                   <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                    className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full"
                     style={{ background: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)" }}
                   >
                     {action.icon}
                   </div>
-                  <span className="font-rethink text-[16px] font-medium">
-                    {action.label}
-                  </span>
+                  <span className="font-rethink text-[16px] font-medium">{action.label}</span>
                 </button>
               ))}
             </div>

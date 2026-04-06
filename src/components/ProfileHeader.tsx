@@ -8,7 +8,12 @@ const STATS = [
   { value: "2.8k", label: "Impact" },
 ];
 
-export function ProfileHeader() {
+type ProfileHeaderProps = {
+  /** Defaults to real photo (V1). MVP profile uses a separate illustrated avatar. */
+  avatarSrc?: string;
+};
+
+export function ProfileHeader({ avatarSrc = tinsleyProfilePhoto }: ProfileHeaderProps) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const textColor = isDark ? "#ffffff" : "#000000";
@@ -16,7 +21,7 @@ export function ProfileHeader() {
   return (
     <div className="flex flex-col items-center pt-4 pb-4 px-6">
       <div className="w-[72px] h-[72px] rounded-full mb-3 overflow-hidden">
-        <AvatarImg src={tinsleyProfilePhoto} alt="tinsleyfok" className="w-full h-full object-cover" />
+        <AvatarImg src={avatarSrc} alt="tinsleyfok" className="w-full h-full object-cover" />
       </div>
 
       <div className="flex items-center gap-6 mb-3">

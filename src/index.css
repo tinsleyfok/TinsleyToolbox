@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* Fill viewport so flex-1 + justify-center work under #root (home hero, etc.). */
+@layer base {
+  html {
+    min-height: 100dvh;
+  }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+  }
+  #root {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /* ── Rethink Sans (onboarding page) ── */
 @theme {
   --font-rethink: "Rethink Sans", sans-serif;
@@ -250,15 +266,19 @@
 }
 
 /* ── App shell (phone simulator for app pages) ── */
+/* Fills <main> (full height; app phone chrome positions with `--site-header` when set). */
 .app-shell {
-  min-height: 100vh;
-  min-height: 100dvh;
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  flex-direction: column;
 }
 
 .app-phone-wrapper {
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  flex: 1 1 0%;
+  min-height: 0;
+  position: relative;
 }
 
 .app-phone-img {
@@ -267,7 +287,11 @@
 
 .app-phone-screen {
   position: fixed;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: var(--site-header, 0px);
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -283,7 +307,21 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding-bottom: 56px;
+}
+
+/* V1: h-14 bar + 20px extra inset below tabs */
+.app-content[data-bottom-nav="v1"] {
+  padding-bottom: 76px;
+}
+
+/* MVP: taller bar + FAB overlap */
+.app-content[data-bottom-nav="mvp"] {
+  padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+}
+
+/* MVP profile (no tab bar) */
+.app-content[data-bottom-nav="none"] {
+  padding-bottom: 0;
 }
 
 @media (min-width: 769px) {
@@ -329,11 +367,12 @@
     transform: translateZ(0);
   }
 
+  /* bottom: 0 so the menu bar meets the bottom of the phone screen (no strip below) */
   .app-screen-inner {
     top: 48px;
     left: 12px;
     right: 12px;
-    bottom: 28px;
+    bottom: 0;
   }
 }
 
@@ -401,5 +440,27 @@
     opacity: 1;
     animation: none;
   }
+}
+
+/* ── Home: use remaining space below header; vertical + horizontal center ── */
+.home-page-shell {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+
+/* ── Home hero headline ── */
+.home-hero-headline {
+  color: #2f2e2b;
+  font-family: var(--font-rethink);
+}
+
+html[data-site-theme="dark"] .home-hero-headline {
+  color: #ececea;
 }
 

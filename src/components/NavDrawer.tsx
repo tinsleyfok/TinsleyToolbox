@@ -15,7 +15,10 @@ const NAV_ITEMS: NavItem[] = [
     to: "/app",
     label: "App",
     isFolder: true,
-    children: [{ to: "/app", label: "V1" }],
+    children: [
+      { to: "/app/mvp", label: "MVP" },
+      { to: "/app", label: "V1" },
+    ],
   },
   {
     to: "/animation",
@@ -25,7 +28,7 @@ const NAV_ITEMS: NavItem[] = [
       { to: "/animation/onboarding", label: "Onboarding" },
       { to: "/animation/flip-card", label: "Flip card" },
       { to: "/animation/like", label: "Like" },
-      { to: "/animation/opening", label: "Opening" },
+      { to: "/animation/splash", label: "Splash" },
     ],
   },
   {
@@ -41,6 +44,9 @@ export function NavDrawer() {
   const { pathname } = useLocation();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
+  /** In-app: small screens use bottom-left so we do not cover MVP/V1 header controls; md+ keeps top-left (centered phone). MVP profile has no tab bar + back is top-left, so use top-right there. */
+  const inApp = pathname.startsWith("/app");
+  const isMvpProfile = pathname.startsWith("/app/mvp/profile");
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => {
     const init: Record<string, boolean> = {};
     NAV_ITEMS.forEach(item => {
@@ -53,9 +59,16 @@ export function NavDrawer() {
     <>
       {/* Hamburger */}
       <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label="Open menu"
-        className={`fixed top-1.5 left-4 z-[1200] w-10 h-10 border-none rounded-[10px] cursor-pointer flex flex-col items-center justify-center gap-[5px] p-0 transition-shadow ${
+        className={`fixed z-[1200] w-10 h-10 border-none rounded-[10px] cursor-pointer flex flex-col items-center justify-center gap-[5px] p-0 transition-shadow ${
+          !inApp
+            ? "left-4 top-1.5"
+            : isMvpProfile
+              ? "right-4 top-1.5"
+              : "bottom-[calc(96px+env(safe-area-inset-bottom,0px))] left-4 top-auto md:bottom-auto md:left-4 md:top-1.5"
+        } ${
           isDark
             ? "bg-[#2c2c2c] shadow-[0_2px_10px_rgba(0,0,0,0.4)] hover:bg-[#353535]"
             : "bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
