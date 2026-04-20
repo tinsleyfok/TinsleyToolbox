@@ -7,6 +7,7 @@ export function AnimationPage() {
       <FileItem to="/animation/flip-card" title="Flip card" />
       <FileItem to="/animation/like" title="Like" emptyPreview />
       <FileItem to="/animation/splash" title="Splash" emptyPreview />
+      <FileItem to="/animation/referral-entry" title="Referral entry" emptyPreview />
     </div>
   );
 }

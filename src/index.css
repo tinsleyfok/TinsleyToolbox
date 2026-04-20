@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --nav-rail-width: 220px;
+}
+
 /* Fill viewport so flex-1 + justify-center work under #root (home hero, etc.). */
 @layer base {
   html {
@@ -251,7 +255,8 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 220px;
+  max-height: 100dvh;
+  width: var(--nav-rail-width);
   background: #f0f0ee;
   z-index: 1150;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
@@ -259,6 +264,7 @@
   transition: transform 0.25s ease;
   display: flex;
   flex-direction: column;
+  min-height: 0;
   padding: 72px 12px 24px;
   box-sizing: border-box;
 }
@@ -470,6 +476,9 @@
 .home-hero-headline {
   color: #2f2e2b;
   font-family: var(--font-rethink);
+  /* Inline style also set in TSX; !important beats Tailwind / cascade issues in dev */
+  white-space: nowrap !important;
+  text-wrap: nowrap;
 }
 
 html[data-site-theme="dark"] .home-hero-headline {

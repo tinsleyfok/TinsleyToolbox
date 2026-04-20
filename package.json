@@ -4,6 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "vite",
+    "dev:5190": "vite --host 127.0.0.1 --port 5190",
+    "dev:5191": "vite --host 127.0.0.1 --port 5191",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist",
@@ -21,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/tinsleyfok/TinsleyToolbox/issues"
   },
-  "homepage": "https://github.com/tinsleyfok/TinsleyToolbox#readme",
+  "homepage": "https://tinsleyfok.github.io/TinsleyToolbox/",
   "dependencies": {
     "framer-motion": "^12.35.1",
     "gsap": "^3.14.2",

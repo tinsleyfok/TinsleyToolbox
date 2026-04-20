@@ -1,0 +1,30 @@
+/*
+ * Left nav rail for “website” layout. Class `layout-wide` is toggled synchronously
+ * in index.html (and stays in sync on resize) so this always wins over Tailwind order.
+ */
+html.layout-wide button.nav-hamburger {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+html.layout-wide div.nav-overlay {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html.layout-wide nav.nav-drawer {
+  transform: translateX(0) !important;
+  box-shadow: none;
+  border-right: 1px solid rgba(55, 53, 47, 0.1);
+  padding-top: 28px;
+}
+
+html.layout-wide[data-site-theme="dark"] nav.nav-drawer {
+  border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+html.layout-wide main.site-main {
+  padding-left: var(--nav-rail-width, 220px) !important;
+}

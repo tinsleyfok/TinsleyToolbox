@@ -29,6 +29,7 @@ const NAV_ITEMS: NavItem[] = [
       { to: "/animation/flip-card", label: "Flip card" },
       { to: "/animation/like", label: "Like" },
       { to: "/animation/splash", label: "Splash" },
+      { to: "/animation/referral-entry", label: "Referral entry" },
     ],
   },
   {
@@ -76,7 +77,7 @@ export function NavDrawer() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label="Open menu"
-        className={`fixed z-[1200] w-10 h-10 border-none rounded-[10px] cursor-pointer flex flex-col items-center justify-center gap-[5px] p-0 transition-shadow ${hamburgerPositionClass} ${
+        className={`nav-hamburger fixed z-[1200] w-10 h-10 border-none rounded-[10px] cursor-pointer flex flex-col items-center justify-center gap-[5px] p-0 transition-shadow ${hamburgerPositionClass} ${
           isDark
             ? "bg-[#2c2c2c] shadow-[0_2px_10px_rgba(0,0,0,0.4)] hover:bg-[#353535]"
             : "bg-white shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.12)]"
@@ -94,8 +95,8 @@ export function NavDrawer() {
       />
 
       {/* Drawer */}
-      <nav className={`nav-drawer ${open ? "open" : ""} ${isDark ? "!bg-[#202020]" : ""}`}>
-        <div className="flex-1 flex flex-col gap-0.5 min-h-0 overflow-y-auto overflow-x-hidden pr-0.5 -mr-0.5">
+      <nav className={`nav-drawer min-h-0 ${open ? "open" : ""} ${isDark ? "!bg-[#202020]" : ""}`}>
+        <div className="flex-1 flex flex-col gap-0.5 min-h-0 overflow-y-auto overflow-x-hidden pr-0.5 -mr-0.5 pb-8">
         {NAV_ITEMS.map((item, i) => {
           const isActive = pathname === item.to || item.children?.some(c => pathname === c.to);
           const textColor = isDark ? "#ebebeb" : "#37352f";
@@ -165,7 +166,7 @@ export function NavDrawer() {
         })}
         </div>
 
-        <div className={`relative flex p-1 rounded-xl ${isDark ? "bg-[rgba(255,255,255,0.05)]" : "bg-[rgba(55,53,47,0.04)]"}`}>
+        <div className={`relative flex shrink-0 p-1 rounded-xl ${isDark ? "bg-[rgba(255,255,255,0.05)]" : "bg-[rgba(55,53,47,0.04)]"}`}>
           <div
             className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-[10px] transition-all duration-300 ease-in-out ${
               isDark

@@ -17,10 +17,10 @@ export function App() {
 
   return (
     <div
-      className={`flex min-h-0 min-h-dvh min-h-screen flex-1 flex-col ${isAppRoute ? "" : isDark ? "bg-[#191919]" : "bg-[#f7f7f5]"}`}
+      className={`site-root flex min-h-0 min-h-dvh min-h-screen flex-1 flex-col ${isAppRoute ? "" : isDark ? "bg-[#191919]" : "bg-[#f7f7f5]"}`}
     >
       <NavDrawer />
-      <main className="flex min-h-0 flex-1 flex-col">
+      <main className="site-main flex min-h-0 flex-1 flex-col min-w-0">
         <Outlet />
       </main>
     </div>

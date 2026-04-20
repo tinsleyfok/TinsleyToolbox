@@ -14,6 +14,10 @@ export default defineConfig(({ command }) => ({
     host: "localhost",
     port: 5188,
     strictPort: true,
+    /** Avoid stale HTML/CSS in embedded browsers during dev */
+    headers: {
+      "Cache-Control": "no-store",
+    },
   },
   preview: {
     host: "localhost",

@@ -14,10 +14,12 @@ import { OnboardingPage } from "./pages/OnboardingPage";
 import { FlipCardPage } from "./pages/FlipCardPage";
 import { LikePage } from "./pages/LikePage";
 import { SplashPage } from "./pages/SplashPage";
+import { ReferralEntryPage } from "./pages/ReferralEntryPage";
 import { InspirationPage } from "./pages/InspirationPage";
 import { AnimationInspirationPage } from "./pages/AnimationInspirationPage";
 import { ThemeProvider } from "./hooks/useTheme";
 import "./index.css";
+import "./desktop-nav-rail.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -40,6 +42,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="animation/flip-card" element={<FlipCardPage />} />
           <Route path="animation/like" element={<LikePage />} />
           <Route path="animation/splash" element={<SplashPage />} />
+          <Route path="animation/referral-entry" element={<ReferralEntryPage />} />
           <Route path="animation/opening" element={<Navigate to="/animation/splash" replace />} />
           <Route path="inspiration" element={<InspirationPage />} />
           <Route path="inspiration/animations" element={<AnimationInspirationPage />} />

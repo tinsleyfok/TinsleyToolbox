@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const HERO_TEXT = "Tinsley is designing Gist.";
+/** NBSP before “Gist.” so it never wraps onto its own line after “designing”. */
+const HERO_TEXT = "Tinsley is designing\u00a0Gist.";
 
 const MS_PER_CHAR = 52;
 const MS_AFTER_SPACE = 28;
@@ -41,10 +42,13 @@ export function HomePage() {
   return (
     <div className="home-page-shell">
       <p
-        className="home-hero-headline m-0 max-w-[min(100%,22rem)] text-center text-[clamp(1.35rem,5.5vw,2.75rem)] leading-[1.08] font-bold tracking-[-0.03em] sm:max-w-[min(100%,26rem)] md:text-[clamp(1.75rem,3.2vw,3rem)] md:leading-[1.06]"
-        aria-label={HERO_TEXT}
+        className="home-hero-headline m-0 mx-auto w-max max-w-full self-center text-center text-[clamp(1.1rem,4.2vw,2.75rem)] leading-[1.08] font-bold tracking-[-0.03em] md:text-[clamp(1.35rem,2.8vw,3rem)] md:leading-[1.06]"
+        style={{ whiteSpace: "nowrap" }}
+        aria-label={HERO_TEXT.replace("\u00a0", " ")}
       >
-        <span aria-hidden="true">{shown}</span>
+        <span aria-hidden="true" style={{ whiteSpace: "inherit" }}>
+          {shown}
+        </span>
       </p>
     </div>
   );
