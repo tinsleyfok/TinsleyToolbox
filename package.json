@@ -10,6 +10,12 @@
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist",
     "generate:lottie": "node scripts/generate-opening-lottie.mjs",
+    "generate:bounce-lottie": "node scripts/generate-bounce-lottie.mjs",
+    "generate:shake-lottie": "node scripts/generate-shake-lottie.mjs",
+    "generate:reveal-lottie": "node scripts/generate-reveal-lottie.mjs",
+    "generate:gleam-lottie": "node scripts/generate-gleam-lottie.mjs",
+    "generate:coupon-dark-lottie": "node scripts/generate-coupon-dark-lottie.mjs",
+    "generate:referral-dark-lottie": "node scripts/generate-referral-dark-lottie.mjs",
     "redo:opening-particles": "node scripts/redo-opening-particles.mjs"
   },
   "repository": {
@@ -27,6 +33,7 @@
   "dependencies": {
     "framer-motion": "^12.35.1",
     "gsap": "^3.14.2",
+    "lottie-react": "^2.4.1",
     "matter-js": "^0.20.0",
     "puppeteer": "^24.38.0",
     "react": "^19.2.4",

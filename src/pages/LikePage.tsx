@@ -16,7 +16,7 @@ import {
 } from "../components/LikeHeaderIcons";
 import { useTheme } from "../hooks/useTheme";
 import { AvatarImg } from "../components/AvatarImg";
-import { holoAvatar } from "../utils/holoAvatar";
+import { DEFAULT_PROFILE_PICTURES } from "../utils/profileAvatars";
 
 const LIKE_ACTIVE_RED = "#FF3B30";
 const BOOKMARK_GOLD = "#EAB308";
@@ -248,7 +248,7 @@ export function LikePage() {
         <img
           src={`${import.meta.env.BASE_URL}Image/Phone.png`}
           alt="Phone"
-          className="hidden md:block w-full h-auto max-h-[90vh] relative z-2 pointer-events-none"
+          className="hidden md:block w-auto h-auto max-w-[90vw] max-h-[90vh] relative z-2 pointer-events-none"
         />
         <div
           className="hidden md:block absolute z-0 rounded-[56px] overflow-hidden"
@@ -279,7 +279,7 @@ export function LikePage() {
               <div className="flex justify-center min-w-0 max-w-full">
                 <div className="flex items-center gap-2 min-w-0 max-w-[min(100%,220px)]">
                   <AvatarImg
-                    src={holoAvatar("alcov", 56)}
+                    src={DEFAULT_PROFILE_PICTURES[0]!}
                     alt=""
                     bgSeed="alcov.co"
                     className={`h-7 w-7 rounded-full flex-shrink-0 object-cover ring-1 ${

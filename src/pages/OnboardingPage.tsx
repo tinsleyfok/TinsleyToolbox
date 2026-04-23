@@ -36,7 +36,7 @@ export function OnboardingPage() {
         <img
           src={`${import.meta.env.BASE_URL}Image/Phone.png`}
           alt="Phone"
-          className="hidden md:block w-full h-auto max-h-[90vh] relative z-2 pointer-events-none"
+          className="hidden md:block w-auto h-auto max-w-[90vw] max-h-[90vh] relative z-2 pointer-events-none"
         />
         <div
           className="hidden md:block absolute z-0 rounded-[56px] overflow-hidden"

@@ -208,6 +208,42 @@ const rawInspirations: Inspiration[] = [
     group: "Like",
     media: "/TinsleyToolbox/inspirations/instagram-heart-like.mp4",
   },
+  {
+    id: "airbnb-gift-cards-intro",
+    title: "Airbnb – Gift Cards Intro",
+    description:
+      "Gift card flow intro with layered cards, motion, and clear hierarchy.",
+    source: "https://60fps.design/shots/airbnb-gift-cards-intro-animation",
+    group: "Gift & Referral",
+    media: "/TinsleyToolbox/inspirations/airbnb-gift-cards-intro.mp4",
+  },
+  {
+    id: "waterllama-invite-friends",
+    title: "Waterllama – Invite Friends Sheet",
+    description:
+      "Referral bottom sheet with mascot, confetti, and share affordances.",
+    source: "https://60fps.design/shots/waterllama-invite-friends-sheet",
+    group: "Gift & Referral",
+    media: "/TinsleyToolbox/inspirations/waterllama-invite-friends.mp4",
+  },
+  {
+    id: "cred-referral-cashback",
+    title: "CRED – Referral Cashback Promo",
+    description:
+      "Promo hero with spin, pulse, and staged copy for referral rewards.",
+    source: "https://60fps.design/shots/cred-referral-cashback-promo-animation",
+    group: "Gift & Referral",
+    media: "/TinsleyToolbox/inspirations/cred-referral-cashback.mp4",
+  },
+  {
+    id: "not-boring-habits-reward-unlock",
+    title: "Not Boring Habits – Reward Unlock",
+    description:
+      "Reward reveal with scale, glow, and satisfying unlock timing.",
+    source: "https://60fps.design/shots/not-boring-habits-reward-unlock-animation",
+    group: "Gift & Referral",
+    media: "/TinsleyToolbox/inspirations/not-boring-habits-reward-unlock.mp4",
+  },
 ];
 
 const GITHUB_PAGES_PREFIX = "/TinsleyToolbox";

@@ -185,6 +185,21 @@
   }
 }
 
+/* Referral entry (and similar): clip scroll content to the inner screen curve — matches Phone.png inset layer (56px − 6px). */
+@media (min-width: 769px) {
+  .phone-container.referral-entry-screen {
+    border-radius: 50px;
+  }
+}
+
+/* Referral nav gift: `.phone-container` uses `translateZ(0)` for scrolling perf;
+   that extra compositing layer makes Framer-driven SVG transforms (Reveal) look
+   wrong vs. the picker, which renders outside the shell. This page still clips via
+   `overflow: hidden` + radius on md. */
+.phone-container.referral-entry-screen {
+  transform: none;
+}
+
 /* ── Bubbles (physics-positioned, need custom CSS) ── */
 .bubble {
   position: absolute;
